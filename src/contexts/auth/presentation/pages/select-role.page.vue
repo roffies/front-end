@@ -2,8 +2,8 @@
   <auth-layout>
     <template #form>
       <div class="role-selection">
-        <h3 class="role-title">Choose Your Role</h3>
-        <p class="role-subtitle">Select how you want to use SmartCare</p>
+        <h3 class="role-title">{{ $t('auth.roleTitle') }}</h3>
+        <p class="role-subtitle">{{ $t('auth.roleSubtitle') }}</p>
 
         <div class="role-options">
           <div
@@ -14,15 +14,15 @@
             <div class="role-icon">
               <i class="pi pi-car" style="font-size: 2rem; color: #3b82f6"></i>
             </div>
-            <h4 class="role-name">Driver</h4>
+            <h4 class="role-name">{{ $t('auth.driver') }}</h4>
             <p class="role-description">
-              Manage your vehicles, find workshops, and get maintenance services
+              {{ $t('auth.driverDescription') }}
             </p>
             <div class="role-features">
-              <div class="feature">• Vehicle management</div>
-              <div class="feature">• Workshop finder</div>
-              <div class="feature">• Maintenance tracking</div>
-              <div class="feature">• Emergency assistance</div>
+              <div class="feature">• {{ $t('auth.vehicleManagement') }}</div>
+              <div class="feature">• {{ $t('auth.workshopFinder') }}</div>
+              <div class="feature">• {{ $t('auth.maintenanceTracking') }}</div>
+              <div class="feature">• {{ $t('auth.emergencyAssistance') }}</div>
             </div>
           </div>
 
@@ -34,21 +34,21 @@
             <div class="role-icon">
               <i class="pi pi-wrench" style="font-size: 2rem; color: #f59e0b"></i>
             </div>
-            <h4 class="role-name">Workshop</h4>
+            <h4 class="role-name">{{ $t('auth.workshop') }}</h4>
             <p class="role-description">
-              Manage your workshop, receive quotes, and serve customers
+              {{ $t('auth.workshopDescription') }}
             </p>
             <div class="role-features">
-              <div class="feature">• Quote management</div>
-              <div class="feature">• Appointment scheduling</div>
-              <div class="feature">• Customer reviews</div>
-              <div class="feature">• Business analytics</div>
+              <div class="feature">• {{ $t('auth.quoteManagement') }}</div>
+              <div class="feature">• {{ $t('auth.appointmentScheduling') }}</div>
+              <div class="feature">• {{ $t('auth.customerReviews') }}</div>
+              <div class="feature">• {{ $t('auth.businessAnalytics') }}</div>
             </div>
           </div>
         </div>
 
         <pv-button
-          label="Continue"
+          :label="$t('auth.continue')"
           class="w-full continue-btn"
           :disabled="!selectedRole"
           @click="handleContinue"
@@ -57,7 +57,10 @@
     </template>
 
     <template #footer>
-      <p>Already have an account? <a href="#" class="sign-in-link">Sign In</a></p>
+      <p>
+        {{ $t('auth.alreadyHaveAccount') }}
+        <a href="#" class="sign-in-link">{{ $t('auth.signIn') }}</a>
+      </p>
     </template>
   </auth-layout>
 </template>

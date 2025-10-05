@@ -1,90 +1,89 @@
 <template>
   <div class="default-layout">
     <div class="app-container">
-      <aside class="left-sidebar">
+      <aside class="left-sidebar" :aria-label="$t('aria.userProfile')">
         <div class="user-profile-section">
           <div class="app-header">
-            <div class="app-icon">
-              <i class="pi pi-car" style="font-size: 2rem; color: #3b82f6"></i>
+            <div class="app-icon" :aria-label="$t('aria.userProfile')">
+              <i class="pi pi-car" style="font-size: 2rem; color: var(--color-primary)"></i>
             </div>
             <h2 class="app-title">SmartCare</h2>
           </div>
 
-          <!-- User Contact Info -->
           <div class="user-contact">
-            <label class="contact-label">Phone</label>
+            <label class="contact-label">{{ $t('common.phone') }}</label>
             <div class="phone-display">111-333-5566</div>
           </div>
 
-          <!-- User Stats -->
           <div class="user-stats">
             <div class="stat-item">
               <i class="pi pi-star-fill" style="color: #fbbf24"></i>
-              <span>4.8 Point</span>
+              <span>4.8 {{ $t('common.points') }}</span>
             </div>
             <div class="stat-item">
               <i class="pi pi-car" style="color: #3b82f6"></i>
-              <span>126 Trips</span>
+              <span>126 {{ $t('common.trips') }}</span>
             </div>
             <div class="stat-item">
               <i class="pi pi-clock" style="color: #10b981"></i>
-              <span>3 Years</span>
+              <span>3 {{ $t('common.years') }}</span>
             </div>
           </div>
 
-          <!-- Navigation Menu -->
-          <nav class="navigation-menu">
-            <div class="menu-item">
+          <nav class="navigation-menu" :aria-label="$t('aria.navigationMenu')">
+            <div class="menu-item" :aria-label="$t('aria.wallet')">
               <i class="pi pi-wallet"></i>
-              <span>Wallet</span>
+              <span>{{ $t('nav.wallet') }}</span>
               <pv-badge value="$29" severity="warning" />
               <i class="pi pi-angle-right"></i>
             </div>
-            <div class="menu-item">
+            <div class="menu-item" :aria-label="$t('aria.history')">
               <i class="pi pi-clock"></i>
-              <span>History</span>
+              <span>{{ $t('nav.history') }}</span>
               <i class="pi pi-angle-right"></i>
             </div>
-            <div class="menu-item">
+            <div class="menu-item" :aria-label="$t('aria.payment')">
               <i class="pi pi-credit-card"></i>
-              <span>Payment</span>
+              <span>{{ $t('nav.payment') }}</span>
               <i class="pi pi-angle-right"></i>
             </div>
-            <div class="menu-item">
+            <div class="menu-item" :aria-label="$t('aria.becomeDriver')">
               <i class="pi pi-car"></i>
-              <span>Become a Driver</span>
+              <span>{{ $t('nav.becomeDriver') }}</span>
               <i class="pi pi-angle-right"></i>
             </div>
-            <div class="menu-item">
+            <div class="menu-item" :aria-label="$t('aria.settings')">
               <i class="pi pi-cog"></i>
-              <span>Settings</span>
+              <span>{{ $t('nav.settings') }}</span>
               <i class="pi pi-angle-right"></i>
             </div>
-            <div class="menu-item">
+            <div class="menu-item" :aria-label="$t('aria.inviteFriends')">
               <i class="pi pi-user-plus"></i>
-              <span>Invite Friends</span>
+              <span>{{ $t('nav.inviteFriends') }}</span>
               <i class="pi pi-angle-right"></i>
+            </div>
+            <div class="menu-item language-menu-item" :aria-label="$t('aria.languageSelector')">
+              <i class="pi pi-globe"></i>
+              <span>{{ $t('common.language') }}</span>
+              <LanguageSwitcher />
             </div>
           </nav>
         </div>
       </aside>
 
-      <!-- Central Content Area -->
       <main class="central-content">
-        <!-- Top Bar -->
         <div class="top-bar">
-          <div class="saved-places">
+          <div class="saved-places" :aria-label="$t('aria.savedPlaces')">
             <i class="pi pi-bookmark"></i>
-            <span>Saved Places</span>
+            <span>{{ $t('common.savedPlaces') }}</span>
             <i class="pi pi-angle-right"></i>
           </div>
-          <div class="car-icon">
+          <div class="car-icon" :aria-label="$t('aria.vehicle')">
             <i class="pi pi-car"></i>
           </div>
         </div>
 
-        <!-- Map View Placeholder -->
-        <div class="map-container">
+        <div class="map-container" :aria-label="$t('aria.mapView')">
           <div class="map-placeholder">
             <div class="map-content">
               <div class="street-names">
@@ -94,67 +93,63 @@
                 <div class="street">Speer Ave</div>
               </div>
 
-              <!-- Pickup Location Marker -->
-              <div class="pickup-marker">
-                <i class="pi pi-map-marker" style="color: #8b5cf6; font-size: 2rem"></i>
+              <div class="pickup-marker" :aria-label="$t('aria.pickupLocation')">
+                <i
+                  class="pi pi-map-marker"
+                  style="color: var(--color-primary); font-size: 2rem"
+                ></i>
               </div>
 
-              <!-- Route Path -->
-              <div class="route-path"></div>
+              <div class="route-path" :aria-label="$t('aria.routePath')"></div>
 
-              <!-- Vehicle Icons -->
-              <div class="vehicle-1">
+              <div class="vehicle-1" :aria-label="$t('aria.vehicle')">
                 <i class="pi pi-car" style="color: #3b82f6"></i>
               </div>
-              <div class="vehicle-2">
+              <div class="vehicle-2" :aria-label="$t('aria.vehicle')">
                 <i class="pi pi-car" style="color: #3b82f6"></i>
-                <span class="eta">3 min</span>
+                <span class="eta">3 {{ $t('common.min') }}</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Transaction History Cards -->
         <div class="transaction-cards">
-          <div class="transaction-card">
+          <div class="transaction-card" :aria-label="$t('aria.paidTransaction')">
             <div class="card-header">
               <h4>AR Shakir</h4>
               <span class="card-number">**** **** 3561</span>
             </div>
-            <div class="card-status paid">Paid</div>
+            <div class="card-status paid">{{ $t('common.paid') }}</div>
             <div class="card-details">
-              <div>Fee: $4.56</div>
-              <div>Date: 24 Sep 2020</div>
-              <div>Total: $55.00</div>
+              <div>{{ $t('common.fee') }}: $4.56</div>
+              <div>{{ $t('common.date') }}: 24 Sep 2020</div>
+              <div>{{ $t('common.total') }}: $55.00</div>
             </div>
           </div>
 
-          <div class="transaction-card">
+          <div class="transaction-card" :aria-label="$t('aria.failedTransaction')">
             <div class="card-header">
               <h4>AR Shakir</h4>
               <span class="card-number">**** **** 5404</span>
             </div>
-            <div class="card-status failed">Failed</div>
+            <div class="card-status failed">{{ $t('common.failed') }}</div>
             <div class="card-details">
-              <div>Fee: $3.51</div>
-              <div>Date: 12 Aug 2020</div>
-              <div>Total: $125.00</div>
+              <div>{{ $t('common.fee') }}: $3.51</div>
+              <div>{{ $t('common.date') }}: 12 Aug 2020</div>
+              <div>{{ $t('common.total') }}: $125.00</div>
             </div>
           </div>
         </div>
       </main>
 
-      <!-- Right Sidebar - Ride Booking -->
       <aside class="right-sidebar">
-        <!-- Arrival Info -->
         <div class="arrival-section">
           <div class="arrival-header">
-            <span>Arriving</span>
-            <span class="arrival-time">5 min</span>
+            <span>{{ $t('common.arriving') }}</span>
+            <span class="arrival-time">5 {{ $t('common.min') }}</span>
           </div>
 
-          <!-- Driver Info -->
-          <div class="driver-info">
+          <div class="driver-info" :aria-label="$t('aria.driverInfo')">
             <pv-avatar image="https://via.placeholder.com/60x60" size="large" shape="circle" />
             <div class="driver-details">
               <h4>Joe Smith</h4>
@@ -167,48 +162,45 @@
             </div>
           </div>
 
-          <!-- Action Buttons -->
           <div class="action-buttons">
-            <button class="action-btn cancel">
+            <button class="action-btn cancel" :aria-label="$t('aria.cancelRide')">
               <i class="pi pi-times"></i>
             </button>
-            <button class="action-btn chat">
+            <button class="action-btn chat" :aria-label="$t('aria.chatWithDriver')">
               <i class="pi pi-comments"></i>
             </button>
-            <button class="action-btn call">
+            <button class="action-btn call" :aria-label="$t('aria.callDriver')">
               <i class="pi pi-phone"></i>
             </button>
           </div>
         </div>
 
-        <!-- Ride Type Selection -->
-        <div class="ride-types">
-          <div class="ride-type bike">
+        <div class="ride-types" :aria-label="$t('aria.rideType')">
+          <div class="ride-type bike" :aria-label="$t('aria.rideTypePrice')">
             <i class="pi pi-car"></i>
-            <span>5 nearby</span>
+            <span>5 {{ $t('common.nearby') }}</span>
             <span class="price">$5.63</span>
           </div>
-          <div class="ride-type standard selected">
+          <div class="ride-type standard selected" :aria-label="$t('aria.rideTypePrice')">
             <i class="pi pi-car"></i>
-            <span>2 nearby</span>
+            <span>2 {{ $t('common.nearby') }}</span>
             <span class="price">$8.92</span>
           </div>
-          <div class="ride-type premium">
+          <div class="ride-type premium" :aria-label="$t('aria.rideTypePrice')">
             <i class="pi pi-crown"></i>
-            <span>1 nearby</span>
+            <span>1 {{ $t('common.nearby') }}</span>
             <span class="price">$9.46</span>
           </div>
         </div>
 
-        <!-- Ride Summary -->
-        <div class="ride-summary">
+        <div class="ride-summary" :aria-label="$t('aria.rideSummary')">
           <div class="summary-item">
             <i class="pi pi-map-marker"></i>
-            <span>3.1 km</span>
+            <span>3.1 {{ $t('common.km') }}</span>
           </div>
           <div class="summary-item">
             <i class="pi pi-clock"></i>
-            <span>8 min</span>
+            <span>8 {{ $t('common.min') }}</span>
           </div>
           <div class="summary-item">
             <i class="pi pi-dollar"></i>
@@ -216,38 +208,46 @@
           </div>
         </div>
 
-        <!-- Location Inputs -->
         <div class="location-inputs">
           <div class="input-group">
-            <label>Pickup point</label>
+            <label>{{ $t('common.pickupPoint') }}</label>
             <div class="input-field">
-              <input type="text" placeholder="Current location" />
-              <i class="pi pi-map-marker" style="color: #8b5cf6"></i>
+              <input
+                type="text"
+                :placeholder="$t('common.currentLocation')"
+                :aria-label="$t('aria.locationInput')"
+              />
+              <i class="pi pi-map-marker" style="color: var(--color-primary)"></i>
             </div>
           </div>
 
           <div class="input-group">
-            <label>Drop Off</label>
+            <label>{{ $t('common.dropOff') }}</label>
             <div class="input-field">
-              <input type="text" placeholder="Where you want to go?" />
+              <input
+                type="text"
+                :placeholder="$t('common.whereToGo')"
+                :aria-label="$t('aria.locationInput')"
+              />
             </div>
           </div>
         </div>
 
-        <!-- Saved Places -->
         <div class="saved-places-section">
           <div class="section-header">
-            <span>Saved Places</span>
+            <span>{{ $t('common.savedPlaces') }}</span>
             <i class="pi pi-angle-right"></i>
           </div>
 
-          <div class="saved-place-card">
+          <div class="saved-place-card" :aria-label="$t('aria.workPlace')">
             <i class="pi pi-building"></i>
             <div class="place-info">
-              <h5>Work (10 min, 2.9 km)</h5>
+              <h5>
+                {{ $t('common.work') }} (10 {{ $t('common.min') }}, 2.9 {{ $t('common.km') }})
+              </h5>
               <p>Studio 08 Jake Stream</p>
             </div>
-            <i class="pi pi-pencil"></i>
+            <i class="pi pi-pencil" :aria-label="$t('aria.editPlace')"></i>
           </div>
         </div>
       </aside>
@@ -256,7 +256,7 @@
 </template>
 
 <script setup>
-// Layout component for the main mobile app interface
+import LanguageSwitcher from '@/shared-kernel/presentation/ui/components/language-switcher.component.vue'
 </script>
 
 <style scoped>
@@ -276,7 +276,6 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-/* Left Sidebar */
 .left-sidebar {
   width: 25%;
   background: white;
@@ -370,7 +369,16 @@
   color: #9ca3af;
 }
 
-/* Central Content */
+.language-menu-item {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+}
+
+.language-menu-item .language-switcher {
+  margin-left: auto;
+}
+
 .central-content {
   flex: 1;
   padding: 1.5rem;
@@ -444,7 +452,7 @@
   left: 50%;
   width: 2px;
   height: 40%;
-  background: #8b5cf6;
+  background: var(--color-primary);
   transform: translateX(-50%);
 }
 
@@ -523,7 +531,6 @@
   line-height: 1.4;
 }
 
-/* Right Sidebar */
 .right-sidebar {
   width: 30%;
   background: white;
@@ -615,7 +622,7 @@
 }
 
 .action-btn.call {
-  background: #8b5cf6;
+  background: var(--color-primary);
   color: white;
 }
 
@@ -635,9 +642,9 @@
 }
 
 .ride-type.selected {
-  background: #8b5cf6;
+  background: var(--color-primary);
   color: white;
-  border-color: #8b5cf6;
+  border-color: var(--color-primary);
 }
 
 .ride-type i {
@@ -759,7 +766,6 @@
   cursor: pointer;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .app-container {
     flex-direction: column;

@@ -17,6 +17,13 @@ import Divider from 'primevue/divider'
 import Panel from 'primevue/panel'
 import TabView from 'primevue/tabview'
 import TabPanel from 'primevue/tabpanel'
+import Dropdown from 'primevue/dropdown'
+import Stepper from 'primevue/stepper'
+import StepList from 'primevue/steplist'
+import StepPanels from 'primevue/steppanels'
+import StepItem from 'primevue/stepitem'
+import Step from 'primevue/step'
+import StepPanel from 'primevue/steppanel'
 
 export const themes = {
   aura: Aura,
@@ -45,4 +52,11 @@ export function setupPrimeVue(app, selectedTheme = 'aura') {
   app.component('pv-panel', Panel)
   app.component('pv-tab-view', TabView)
   app.component('pv-tab-panel', TabPanel)
+  app.component('pv-dropdown', Dropdown)
+  app.component('pv-stepper', Stepper)
+  app.component('pv-step-list', StepList)
+  app.component('pv-step-panels', StepPanels)
+  app.component('pv-step-item', StepItem)
+  app.component('pv-step', Step)
+  app.component('pv-step-panel', StepPanel)
 }

@@ -3,22 +3,22 @@
     <template #form>
       <div class="login-form">
         <div class="input-group">
-          <label for="email">Email</label>
+          <label for="email">{{ $t('auth.email') }}</label>
           <pv-input-text
             id="email"
             v-model="email"
             type="email"
-            placeholder="stanley@gmail.com"
+            :placeholder="$t('auth.enterEmail')"
             class="w-full"
           />
         </div>
 
         <div class="input-group">
-          <label for="password">Password</label>
+          <label for="password">{{ $t('auth.password') }}</label>
           <pv-password
             id="password"
             v-model="password"
-            placeholder="Enter your password"
+            :placeholder="$t('auth.enterPassword')"
             class="w-full"
             :feedback="false"
             toggle-mask
@@ -28,25 +28,30 @@
         <div class="form-options">
           <div class="remember-me">
             <pv-checkbox v-model="rememberMe" :binary="true" input-id="remember" />
-            <label for="remember">Remember me</label>
+            <label for="remember">{{ $t('auth.rememberMe') }}</label>
           </div>
-          <a href="#" class="forgot-password">Forgot Password?</a>
+          <a href="#" class="forgot-password">{{ $t('auth.forgotPassword') }}</a>
         </div>
 
-        <pv-button label="Sign In" class="w-full sign-in-btn" @click="handleLogin" />
+        <pv-button :label="$t('auth.signIn')" class="w-full sign-in-btn" @click="handleLogin" />
       </div>
     </template>
 
     <template #footer>
-      <p>Don't have an account? <a href="#" class="sign-up-link">Sign Up</a></p>
+      <p>
+        {{ $t('auth.dontHaveAccount') }}
+        <a href="#" class="sign-up-link" @click="goToRegister">{{ $t('auth.signUp') }}</a>
+      </p>
     </template>
   </auth-layout>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import AuthLayout from '@/shared-kernel/presentation/layouts/auth/auth-layout.component.vue'
 
+const router = useRouter()
 const email = ref('stanley@gmail.com')
 const password = ref('')
 const rememberMe = ref(false)
@@ -58,6 +63,10 @@ const handleLogin = () => {
     rememberMe: rememberMe.value,
   })
   // TODO: Implement login logic
+}
+
+const goToRegister = () => {
+  router.push('/register')
 }
 </script>
 
@@ -77,7 +86,7 @@ const handleLogin = () => {
 .input-group label {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #374151;
+  color: var(--color-text);
 }
 
 .form-options {
@@ -94,13 +103,13 @@ const handleLogin = () => {
 
 .remember-me label {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--color-text-light);
   cursor: pointer;
 }
 
 .forgot-password {
   font-size: 0.875rem;
-  color: #8b5cf6;
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: 500;
 }
@@ -110,7 +119,7 @@ const handleLogin = () => {
 }
 
 .sign-in-btn {
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   border: none;
   height: 48px;
   font-weight: 600;
@@ -118,7 +127,7 @@ const handleLogin = () => {
 }
 
 .sign-up-link {
-  color: #8b5cf6;
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: 500;
 }

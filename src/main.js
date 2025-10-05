@@ -4,6 +4,9 @@ import { setupPrimeVue } from './shared-kernel/infrastructure/ui-framework/prime
 import { router } from './shared-kernel/infrastructure/router/router.js'
 import { i18n } from './shared-kernel/infrastructure/i18n/i18n.js'
 
+import './assets/main.css'
+import 'primeicons/primeicons.css'
+
 const app = createApp(App)
 
 setupPrimeVue(app, 'aura')
