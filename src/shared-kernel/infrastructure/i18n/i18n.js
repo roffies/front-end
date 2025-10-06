@@ -8,7 +8,9 @@ const messages = {
 }
 
 export const i18n = createI18n({
+  legacy: false, // Use Composition API mode
   locale: 'es',
   fallbackLocale: 'en',
+  globalInjection: true, // Enable global $t
   messages,
 })
