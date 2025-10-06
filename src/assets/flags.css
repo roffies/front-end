@@ -1,4 +1,3 @@
-/* Flag icons for language switcher */
 span.flag {
   width: 44px;
   height: 30px;
@@ -15,12 +14,10 @@ img.flag {
   vertical-align: middle;
 }
 
-/* Spain */
 .flag-es {
   background-position: 0 26.859504%;
 }
 
-/* United Kingdom */
 .flag-gb,
 .flag-uk {
   background-position: 0 92.561983%;
