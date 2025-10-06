@@ -12,7 +12,7 @@
             @click="selectRole('driver')"
           >
             <div class="role-icon">
-              <i class="pi pi-car" style="font-size: 2rem; color: #3b82f6"></i>
+              <i class="pi pi-car" style="font-size: 2rem; color: var(--color-primary)"></i>
             </div>
             <h4 class="role-name">{{ $t('auth.driver') }}</h4>
             <p class="role-description">
@@ -32,7 +32,7 @@
             @click="selectRole('workshop')"
           >
             <div class="role-icon">
-              <i class="pi pi-wrench" style="font-size: 2rem; color: #f59e0b"></i>
+              <i class="pi pi-wrench" style="font-size: 2rem; color: var(--color-warning)"></i>
             </div>
             <h4 class="role-name">{{ $t('auth.workshop') }}</h4>
             <p class="role-description">
@@ -91,14 +91,14 @@ const handleContinue = () => {
 .role-title {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #1f2937;
+  color: var(--color-text);
   text-align: center;
   margin: 0;
 }
 
 .role-subtitle {
   font-size: 1rem;
-  color: #6b7280;
+  color: var(--color-text-light);
   text-align: center;
   margin: 0;
 }
@@ -110,7 +110,7 @@ const handleContinue = () => {
 }
 
 .role-card {
-  border: 2px solid #e5e7eb;
+  border: 2px solid var(--color-gray-200);
   border-radius: 12px;
   padding: 1.5rem;
   cursor: pointer;
@@ -119,15 +119,15 @@ const handleContinue = () => {
 }
 
 .role-card:hover {
-  border-color: #8b5cf6;
+  border-color: var(--color-primary);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.15);
+  box-shadow: 0 4px 12px rgba(66, 103, 102, 0.15);
 }
 
 .role-card.selected {
-  border-color: #8b5cf6;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(124, 58, 237, 0.05) 100%);
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+  border-color: var(--color-primary);
+  background: linear-gradient(135deg, rgba(66, 103, 102, 0.05) 0%, rgba(59, 108, 90, 0.05) 100%);
+  box-shadow: 0 4px 12px rgba(66, 103, 102, 0.2);
 }
 
 .role-icon {
@@ -138,14 +138,14 @@ const handleContinue = () => {
 .role-name {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #1f2937;
+  color: var(--color-text);
   text-align: center;
   margin: 0 0 0.5rem 0;
 }
 
 .role-description {
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--color-text-light);
   text-align: center;
   margin: 0 0 1rem 0;
   line-height: 1.5;
@@ -159,12 +159,12 @@ const handleContinue = () => {
 
 .feature {
   font-size: 0.875rem;
-  color: #374151;
+  color: var(--color-text);
   line-height: 1.4;
 }
 
 .continue-btn {
-  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   border: none;
   height: 48px;
   font-weight: 600;
@@ -172,13 +172,13 @@ const handleContinue = () => {
 }
 
 .continue-btn:disabled {
-  background: #d1d5db;
-  color: #9ca3af;
+  background: var(--color-gray-300);
+  color: var(--color-gray-500);
   cursor: not-allowed;
 }
 
 .sign-in-link {
-  color: #8b5cf6;
+  color: var(--color-primary);
   text-decoration: none;
   font-weight: 500;
 }

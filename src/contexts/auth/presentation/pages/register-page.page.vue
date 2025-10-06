@@ -105,7 +105,10 @@
                       @click="selectRole('driver')"
                     >
                       <div class="role-icon">
-                        <i class="pi pi-car" style="font-size: 2rem; color: #3b82f6"></i>
+                        <i
+                          class="pi pi-car"
+                          style="font-size: 2rem; color: var(--color-primary)"
+                        ></i>
                       </div>
                       <h4 class="role-name">{{ $t('auth.driver') }}</h4>
                       <p class="role-description">
@@ -125,7 +128,10 @@
                       @click="selectRole('workshop')"
                     >
                       <div class="role-icon">
-                        <i class="pi pi-wrench" style="font-size: 2rem; color: #f59e0b"></i>
+                        <i
+                          class="pi pi-wrench"
+                          style="font-size: 2rem; color: var(--color-warning)"
+                        ></i>
                       </div>
                       <h4 class="role-name">{{ $t('auth.workshop') }}</h4>
                       <p class="role-description">

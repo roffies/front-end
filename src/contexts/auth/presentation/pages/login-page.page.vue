@@ -119,9 +119,13 @@ const goToRegister = () => {
 }
 
 .sign-in-btn {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-  border: none;
-  height: 48px;
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  ) !important;
+  border: none !important;
+  height: 48px !important;
   font-weight: 600;
   font-size: 1rem;
 }
@@ -137,32 +141,32 @@ const goToRegister = () => {
 }
 
 :deep(.p-inputtext) {
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  padding: 0.75rem;
-  font-size: 0.875rem;
+  border: 1px solid var(--color-gray-300) !important;
+  border-radius: 8px !important;
+  padding: 0.75rem !important;
+  font-size: 0.875rem !important;
 }
 
 :deep(.p-inputtext:focus) {
-  border-color: #8b5cf6;
-  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.1);
+  border-color: var(--color-primary) !important;
+  box-shadow: 0 0 0 3px rgba(66, 103, 102, 0.1) !important;
 }
 
 :deep(.p-password) {
-  width: 100%;
+  width: 100% !important;
 }
 
 :deep(.p-password .p-inputtext) {
-  width: 100%;
+  width: 100% !important;
 }
 
 :deep(.p-checkbox .p-checkbox-box) {
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
+  border: 1px solid var(--color-gray-300) !important;
+  border-radius: 4px !important;
 }
 
 :deep(.p-checkbox .p-checkbox-box.p-highlight) {
-  background: #8b5cf6;
-  border-color: #8b5cf6;
+  background: var(--color-primary) !important;
+  border-color: var(--color-primary) !important;
 }
 </style>
