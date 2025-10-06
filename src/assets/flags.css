@@ -1,0 +1,27 @@
+/* Flag icons for language switcher */
+span.flag {
+  width: 44px;
+  height: 30px;
+  display: inline-block;
+}
+
+img.flag {
+  width: 30px;
+}
+
+.flag {
+  background: url(https://primefaces.org/cdn/primevue/images/flag/flags_responsive.png) no-repeat;
+  background-size: 100%;
+  vertical-align: middle;
+}
+
+/* Spain */
+.flag-es {
+  background-position: 0 26.859504%;
+}
+
+/* United Kingdom */
+.flag-gb,
+.flag-uk {
+  background-position: 0 92.561983%;
+}
