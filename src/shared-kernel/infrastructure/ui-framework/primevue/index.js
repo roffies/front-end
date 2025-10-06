@@ -1,6 +1,7 @@
 import PrimeVue from 'primevue/config'
 import Aura from '@primeuix/themes/aura'
 import Lara from '@primeuix/themes/lara'
+import StyleClass from 'primevue/styleclass'
 
 import Button from 'primevue/button'
 import DataTable from 'primevue/datatable'
@@ -36,6 +37,8 @@ export function setupPrimeVue(app, selectedTheme = 'aura') {
   app.use(PrimeVue, {
     theme: { preset },
   })
+
+  app.directive('styleclass', StyleClass)
 
   app.component('pv-button', Button)
   app.component('pv-data-table', DataTable)
