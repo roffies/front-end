@@ -1,0 +1,86 @@
+:root {
+  --color-primary: #426766;
+  --color-primary-dark: #3b6c5a;
+  --color-primary-light: #88bca4;
+  --color-secondary: #c9e3ca;
+  --color-secondary-light: #d5edd7;
+  --color-background: #effffd;
+  --color-text: #1f2937;
+  --color-text-light: #6b7280;
+  --color-text-muted: #9ca3af;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+  --color-success: #059669;
+  --color-rating: #fbbf24;
+  --color-vehicles: #3b82f6;
+  --color-member-since: #10b981;
+
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+
+  --transition-fast: 0.15s ease-in-out;
+  --transition-normal: 0.3s ease-in-out;
+
+  --primary-color: var(--color-primary);
+  --primary-contrast-color: white;
+  --text-color: var(--color-text);
+  --text-color-secondary: var(--color-text-light);
+  --surface-border: var(--color-gray-200);
+  --surface-card: var(--color-background);
+  --surface-hover: var(--color-gray-100);
+  --surface-overlay: var(--color-background);
+  --transition-duration: var(--transition-fast);
+  --maskbg: rgba(0, 0, 0, 0.4);
+  --content-border-radius: var(--radius-md);
+  --layout-section-transition-duration: var(--transition-normal);
+  --element-transition-duration: var(--transition-fast);
+  --focus-ring-width: 2px;
+  --focus-ring-style: solid;
+  --focus-ring-color: var(--color-primary);
+  --focus-ring-offset: 2px;
+  --focus-ring-shadow: 0 0 0 0.2rem rgba(66, 103, 102, 0.25);
+}
+
+@import 'primeicons/primeicons.css';
+@import '@/assets/layout/layout.scss';
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-400);
+}
+
+::selection {
+  background: rgba(66, 103, 102, 0.2);
+  color: var(--color-text);
+}
