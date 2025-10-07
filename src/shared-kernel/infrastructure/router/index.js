@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import { TokenManager } from '../auth/token-manager.js'
 
 import LoginPage from '@/contexts/auth/presentation/pages/login-page.page.vue'
 import RegisterPage from '@/contexts/auth/presentation/pages/register-page.page.vue'
@@ -161,27 +162,24 @@ export const router = createRouter({
   routes,
 })
 
-// Simple auth guard - no service needed
+// Simple auth guard using TokenManager
 router.beforeEach((to, from, next) => {
   // Check if route requires authentication
   if (to.meta.requiresAuth) {
-    const token = localStorage.getItem('accessToken')
-    const user = JSON.parse(localStorage.getItem('user') || '{}')
-    
-    // Check if user is authenticated
-    if (!token || !user.id) {
+    if (!TokenManager.isAuthenticated()) {
       console.log('🔒 No token or user found, redirecting to login')
       next('/login')
       return
     }
-    
+
     // Check if user has the correct role
-    if (to.meta.role && user.role !== to.meta.role) {
-      console.log(`🚫 User role '${user.role}' doesn't match required role '${to.meta.role}'`)
+    const userRole = TokenManager.getUserRole()
+    if (to.meta.role && userRole !== to.meta.role) {
+      console.log(`🚫 User role '${userRole}' doesn't match required role '${to.meta.role}'`)
       // Redirect to appropriate dashboard based on user role
-      if (user.role === 'driver') {
+      if (userRole === 'driver') {
         next('/driver/dashboard')
-      } else if (user.role === 'workshop') {
+      } else if (userRole === 'workshop') {
         next('/workshop/dashboard')
       } else {
         next('/login')
@@ -189,17 +187,15 @@ router.beforeEach((to, from, next) => {
       return
     }
   }
-  
+
   // If user is already logged in and trying to access auth pages, redirect to dashboard
   if ((to.path === '/login' || to.path === '/register') && to.meta.layout === 'auth') {
-    const token = localStorage.getItem('accessToken')
-    const user = JSON.parse(localStorage.getItem('user') || '{}')
-    
-    if (token && user.id) {
+    if (TokenManager.isAuthenticated()) {
+      const userRole = TokenManager.getUserRole()
       console.log('✅ User already logged in, redirecting to dashboard')
-      if (user.role === 'driver') {
+      if (userRole === 'driver') {
         next('/driver/dashboard')
-      } else if (user.role === 'workshop') {
+      } else if (userRole === 'workshop') {
         next('/workshop/dashboard')
       } else {
         next('/driver/dashboard')
@@ -207,6 +203,6 @@ router.beforeEach((to, from, next) => {
       return
     }
   }
-  
+
   next()
 })

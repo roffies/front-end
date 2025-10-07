@@ -1,4 +1,5 @@
 import { http } from '../../../shared-kernel/infrastructure/http/http.js'
+import { TokenManager } from '../../../shared-kernel/infrastructure/auth/token-manager.js'
 
 export class AuthApiService {
   async login(credentials) {
@@ -12,18 +13,14 @@ export class AuthApiService {
   }
 
   async getCurrentUser() {
-    const token = localStorage.getItem('accessToken')
-    const response = await http.get('/me', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    // Token is automatically added by http interceptor
+    const response = await http.get('/me')
     return response
   }
 
   async logout() {
-    localStorage.removeItem('accessToken')
-    localStorage.removeItem('user')
+    // Clear all authentication data using TokenManager
+    TokenManager.clearAuth()
     return { success: true }
   }
 }

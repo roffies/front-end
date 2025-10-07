@@ -35,7 +35,7 @@ export function setupPrimeVue(app, selectedTheme = 'aura') {
   const preset = themes[selectedTheme] || themes.aura
 
   app.use(PrimeVue, {
-    theme: { preset },
+    theme: { preset, options: { darkModeSelector: false } },
   })
 
   app.directive('styleclass', StyleClass)

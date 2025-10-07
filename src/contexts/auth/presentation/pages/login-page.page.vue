@@ -59,6 +59,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import AuthLayout from '@/shared-kernel/presentation/layouts/auth/auth-layout.component.vue'
 import { AuthApiService, AuthAssembler } from '@/contexts/auth/infrastructure/index.js'
+import { TokenManager } from '@/shared-kernel/infrastructure/auth/token-manager.js'
 
 const router = useRouter()
 const email = ref('admin1@admin.com')
@@ -87,8 +88,9 @@ const handleLogin = async () => {
     const loginResult = AuthAssembler.toLoginResponse(response)
 
     if (loginResult.success) {
-      localStorage.setItem('accessToken', loginResult.accessToken)
-      localStorage.setItem('user', JSON.stringify(loginResult.user))
+      // Use TokenManager instead of direct localStorage access
+      TokenManager.setToken(loginResult.accessToken)
+      TokenManager.setUser(loginResult.user)
 
       if (loginResult.user.role === 'driver') {
         router.push('/driver/dashboard')

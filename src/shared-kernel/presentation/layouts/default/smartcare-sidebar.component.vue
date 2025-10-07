@@ -103,6 +103,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { layoutService } from '@/shared-kernel/infrastructure/layout/layout.service.js'
 import { UserApiService } from '@/contexts/auth/infrastructure/user-api.service.js'
 import { UserAssembler } from '@/contexts/auth/infrastructure/index.js'
+import { AuthApiService } from '@/contexts/auth/infrastructure/auth-api.service.js'
 import { VehicleApiService } from '@/contexts/driver/infrastructure/vehicle-api.service.js'
 import { VehicleAssembler } from '@/contexts/driver/domain/vehicle.assembler.js'
 import { AppointmentApiService } from '@/contexts/workshop/infrastructure/appointment-api.service.js'
@@ -123,6 +124,7 @@ const error = computed(() => state.sidebarError)
 const userService = new UserApiService()
 const vehicleService = new VehicleApiService()
 const appointmentService = new AppointmentApiService()
+const authService = new AuthApiService()
 
 const currentRole = computed(() => {
   if (route.path.startsWith('/driver')) {
@@ -179,8 +181,30 @@ const loadData = async () => {
   }
 }
 
-const handleSignOut = () => {
-  router.push('/login')
+const handleSignOut = async () => {
+  try {
+    // Call logout service to clear tokens
+    await authService.logout()
+    
+    // Clear layout service state
+    layoutService.setCurrentUser(null)
+    layoutService.setUserVehicles([])
+    layoutService.setUserAppointments([])
+    layoutService.setSidebarDataLoaded(false)
+    layoutService.setCurrentRole(null)
+    
+    // Redirect to login
+    router.push('/login')
+  } catch (error) {
+    console.error('Error during logout:', error)
+    // Even if logout fails, clear local state and redirect
+    layoutService.setCurrentUser(null)
+    layoutService.setUserVehicles([])
+    layoutService.setUserAppointments([])
+    layoutService.setSidebarDataLoaded(false)
+    layoutService.setCurrentRole(null)
+    router.push('/login')
+  }
 }
 
 onMounted(async () => {
