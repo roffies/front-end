@@ -69,9 +69,7 @@
                       <pv-checkbox v-model="agreeTerms" :binary="true" input-id="terms" />
                       <label for="terms"
                         >{{ $t('auth.agreeTerms') }}
-                        <a href="#" class="terms-link">{{
-                          $t('auth.termsAndConditions')
-                        }}</a></label
+                        <a href="#" class="text-link">{{ $t('auth.termsAndConditions') }}</a></label
                       >
                     </div>
                   </div>
@@ -83,7 +81,7 @@
                   :label="$t('auth.continue')"
                   icon="pi pi-arrow-right"
                   icon-pos="right"
-                  class="continue-btn"
+                  class="continue-btn primary-btn"
                   :disabled="!canProceedToStep2"
                   @click="activateCallback(2)"
                 />
@@ -151,7 +149,7 @@
               <div class="step-actions">
                 <pv-button
                   :label="$t('auth.signUp')"
-                  class="sign-up-btn"
+                  class="primary-btn"
                   :disabled="!selectedRole"
                   @click="handleRegister"
                 />
@@ -159,7 +157,7 @@
                   :label="$t('common.back')"
                   severity="secondary"
                   icon="pi pi-arrow-left"
-                  class="back-btn"
+                  class="secondary-btn"
                   @click="activateCallback(1)"
                 />
               </div>
@@ -172,7 +170,7 @@
     <template #footer>
       <p>
         {{ $t('auth.alreadyHaveAccount') }}
-        <a href="#" class="sign-in-link" @click="goToLogin">{{ $t('auth.signIn') }}</a>
+        <a href="#" class="text-link" @click="goToLogin">{{ $t('auth.signIn') }}</a>
       </p>
     </template>
   </auth-layout>

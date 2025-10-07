@@ -31,14 +31,14 @@
           <a href="#" class="forgot-password">{{ $t('auth.forgotPassword') }}</a>
         </div>
 
-        <pv-button :label="$t('auth.signIn')" class="w-full sign-in-btn" @click="handleLogin" />
+        <pv-button :label="$t('auth.signIn')" class="w-full primary-btn" @click="handleLogin" />
       </div>
     </template>
 
     <template #footer>
       <p>
         {{ $t('auth.dontHaveAccount') }}
-        <a href="#" class="sign-up-link" @click="goToRegister">{{ $t('auth.signUp') }}</a>
+        <a href="#" class="text-link" @click="goToRegister">{{ $t('auth.signUp') }}</a>
       </p>
     </template>
   </auth-layout>
