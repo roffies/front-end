@@ -17,7 +17,7 @@ import Avatar from 'primevue/avatar'
 import Badge from 'primevue/badge'
 import Divider from 'primevue/divider'
 import Panel from 'primevue/panel'
-import TabView from 'primevue/tabview'
+import Skeleton from 'primevue/skeleton'
 import TabPanel from 'primevue/tabpanel'
 import Stepper from 'primevue/stepper'
 import StepList from 'primevue/steplist'
@@ -54,7 +54,7 @@ export function setupPrimeVue(app, selectedTheme = 'aura') {
   app.component('pv-badge', Badge)
   app.component('pv-divider', Divider)
   app.component('pv-panel', Panel)
-  app.component('pv-tab-view', TabView)
+  app.component('pv-skeleton', Skeleton)
   app.component('pv-tab-panel', TabPanel)
   app.component('pv-stepper', Stepper)
   app.component('pv-step-list', StepList)

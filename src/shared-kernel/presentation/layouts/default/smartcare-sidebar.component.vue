@@ -2,15 +2,19 @@
   <div class="layout-sidebar">
     <div class="sidebar-user-section">
       <div class="user-profile">
+        <pv-skeleton v-if="loading" shape="circle" size="4rem" />
         <pv-avatar
+          v-else
           :image="currentUser?.avatar || undefined"
           size="large"
           shape="circle"
           :aria-label="$t('aria.userProfile')"
         />
         <div class="user-details">
-          <h3 class="user-name">{{ currentUser?.name || $t('common.loading') }}</h3>
-          <p class="user-phone" v-if="currentUser?.phone">
+          <pv-skeleton v-if="loading" width="8rem" height="1.5rem" />
+          <h3 v-else class="user-name">{{ currentUser?.name || $t('common.loading') }}</h3>
+          <pv-skeleton v-if="loading" width="6rem" height="1rem" />
+          <p v-else-if="currentUser?.phone" class="user-phone">
             {{ $t('common.phone') }}: {{ currentUser.phone }}
           </p>
         </div>
