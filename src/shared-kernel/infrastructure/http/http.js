@@ -11,6 +11,8 @@ http.interceptors.request.use((config) => {
   const token = localStorage.getItem('accessToken')
   if (token) {
     config.headers.Authorization = `Bearer ${token}`
+  } else {
+    console.log('⚠️ No token found for request:', config.url)
   }
   return config
 })

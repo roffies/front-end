@@ -146,11 +146,16 @@
                 </div>
               </div>
 
+              <div v-if="error" class="error-message">
+                {{ error }}
+              </div>
+
               <div class="step-actions">
                 <pv-button
                   :label="$t('auth.signUp')"
                   class="primary-btn"
-                  :disabled="!selectedRole"
+                  :disabled="!selectedRole || loading"
+                  :loading="loading"
                   @click="handleRegister"
                 />
                 <pv-button
@@ -180,6 +185,7 @@
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import AuthLayout from '@/shared-kernel/presentation/layouts/auth/auth-layout.component.vue'
+import { AuthApiService, AuthAssembler } from '@/contexts/auth/infrastructure/index.js'
 
 const router = useRouter()
 const currentStep = ref(1)
@@ -189,6 +195,10 @@ const password = ref('')
 const confirmPassword = ref('')
 const agreeTerms = ref(false)
 const selectedRole = ref('')
+const loading = ref(false)
+const error = ref('')
+
+const authService = new AuthApiService()
 
 const canProceedToStep2 = computed(() => {
   return (
@@ -216,9 +226,49 @@ const goToLogin = () => {
   router.push('/login')
 }
 
-const handleRegister = () => {
-  // TODO: Implement register logic
-  // For now, redirect to driver dashboard after registration
-  router.push('/driver/dashboard')
+const handleRegister = async () => {
+  if (!fullName.value || !email.value || !password.value || !selectedRole.value) {
+    error.value = 'Please fill in all fields'
+    return
+  }
+
+  if (password.value !== confirmPassword.value) {
+    error.value = 'Passwords do not match'
+    return
+  }
+
+  loading.value = true
+  error.value = ''
+
+  try {
+    const response = await authService.register({
+      name: fullName.value,
+      email: email.value,
+      password: password.value,
+      role: selectedRole.value,
+    })
+
+    const registerResult = AuthAssembler.toRegisterResponse(response)
+
+    if (registerResult.success) {
+      // Save token and user to localStorage
+      localStorage.setItem('accessToken', registerResult.accessToken)
+      localStorage.setItem('user', JSON.stringify(registerResult.user))
+
+      // Redirect based on role
+      if (registerResult.user.role === 'driver') {
+        router.push('/driver/dashboard')
+      } else if (registerResult.user.role === 'workshop') {
+        router.push('/workshop/dashboard')
+      }
+    } else {
+      error.value = registerResult.message
+    }
+  } catch (err) {
+    console.error('Register error:', err)
+    error.value = 'Registration failed. Please try again.'
+  } finally {
+    loading.value = false
+  }
 }
 </script>
