@@ -1,0 +1,78 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group {
+  label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text);
+  }
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.remember-me {
+  label {
+    font-size: 0.875rem;
+    color: var(--color-text-light);
+    cursor: pointer;
+  }
+}
+
+.forgot-password {
+  font-size: 0.875rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.sign-in-btn {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  ) !important;
+  border: none !important;
+  height: 48px !important;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.sign-up-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.sign-up-link:hover {
+  text-decoration: underline;
+}
+
+.p-password {
+  .p-inputtext {
+    width: 100%;
+  }
+}
