@@ -1,10 +1,9 @@
 import { createApp } from 'vue'
 import App from './app.vue'
-import { setupPrimeVue } from './shared-kernel/infrastructure/ui-framework/primevue/index.js'
-import { router } from './shared-kernel/infrastructure/router/router.js'
+import { setupPrimeVue } from './shared-kernel/infrastructure/ui-framework/primevue/index'
+import { router } from './shared-kernel/infrastructure/router/index'
 import { i18n } from './shared-kernel/infrastructure/i18n/i18n.js'
 
-// Import all styles (variables, PrimeIcons, layout, utilities)
 import '@/assets/styles.scss'
 
 const app = createApp(App)

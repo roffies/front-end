@@ -3,15 +3,22 @@ import { createRouter, createWebHistory } from 'vue-router'
 import LoginPage from '@/contexts/auth/presentation/pages/login-page.page.vue'
 import RegisterPage from '@/contexts/auth/presentation/pages/register-page.page.vue'
 import SelectRolePage from '@/contexts/auth/presentation/pages/select-role.page.vue'
+
 import DriverDashboard from '@/contexts/driver/presentation/pages/driver-dashboard.page.vue'
 import WorkshopsPage from '@/contexts/driver/presentation/pages/workshops-page.page.vue'
 import HistoryPage from '@/contexts/driver/presentation/pages/history-page.page.vue'
 import DriverProfile from '@/contexts/driver/presentation/pages/driver-profile.page.vue'
+
 import WorkshopDashboard from '@/contexts/workshop/presentation/pages/workshop-dashboard.page.vue'
 import QuotesPage from '@/contexts/workshop/presentation/pages/quotes-page.page.vue'
 import WorkshopProfile from '@/contexts/workshop/presentation/pages/workshop-profile.page.vue'
 
 const routes = [
+  {
+    path: '/',
+    redirect: '/login',
+  },
+
   {
     path: '/login',
     name: 'login',
@@ -32,15 +39,37 @@ const routes = [
   },
 
   {
+    path: '/driver',
+    redirect: '/driver/dashboard',
+  },
+  {
     path: '/driver/dashboard',
     name: 'driver-dashboard',
     component: DriverDashboard,
     meta: { layout: 'driver', requiresAuth: true, role: 'driver' },
   },
   {
+    path: '/driver/vehicles',
+    name: 'driver-vehicles',
+    component: DriverProfile,
+    meta: { layout: 'driver', requiresAuth: true, role: 'driver' },
+  },
+  {
+    path: '/driver/vehicles/add',
+    name: 'driver-vehicles-add',
+    component: DriverProfile,
+    meta: { layout: 'driver', requiresAuth: true, role: 'driver' },
+  },
+  {
     path: '/driver/workshops',
     name: 'driver-workshops',
     component: WorkshopsPage,
+    meta: { layout: 'driver', requiresAuth: true, role: 'driver' },
+  },
+  {
+    path: '/driver/services',
+    name: 'driver-services',
+    component: DriverDashboard,
     meta: { layout: 'driver', requiresAuth: true, role: 'driver' },
   },
   {
@@ -55,10 +84,38 @@ const routes = [
     component: DriverProfile,
     meta: { layout: 'driver', requiresAuth: true, role: 'driver' },
   },
+  {
+    path: '/driver/settings',
+    name: 'driver-settings',
+    component: DriverProfile,
+    meta: { layout: 'driver', requiresAuth: true, role: 'driver' },
+  },
 
+  {
+    path: '/workshop',
+    redirect: '/workshop/dashboard',
+  },
   {
     path: '/workshop/dashboard',
     name: 'workshop-dashboard',
+    component: WorkshopDashboard,
+    meta: { layout: 'workshop', requiresAuth: true, role: 'workshop' },
+  },
+  {
+    path: '/workshop/appointments',
+    name: 'workshop-appointments',
+    component: WorkshopDashboard,
+    meta: { layout: 'workshop', requiresAuth: true, role: 'workshop' },
+  },
+  {
+    path: '/workshop/calendar',
+    name: 'workshop-calendar',
+    component: WorkshopDashboard,
+    meta: { layout: 'workshop', requiresAuth: true, role: 'workshop' },
+  },
+  {
+    path: '/workshop/services',
+    name: 'workshop-services',
     component: WorkshopDashboard,
     meta: { layout: 'workshop', requiresAuth: true, role: 'workshop' },
   },
@@ -69,24 +126,44 @@ const routes = [
     meta: { layout: 'workshop', requiresAuth: true, role: 'workshop' },
   },
   {
+    path: '/workshop/reports',
+    name: 'workshop-reports',
+    component: WorkshopDashboard,
+    meta: { layout: 'workshop', requiresAuth: true, role: 'workshop' },
+  },
+  {
+    path: '/workshop/customers',
+    name: 'workshop-customers',
+    component: WorkshopDashboard,
+    meta: { layout: 'workshop', requiresAuth: true, role: 'workshop' },
+  },
+  {
     path: '/workshop/profile',
     name: 'workshop-profile',
     component: WorkshopProfile,
     meta: { layout: 'workshop', requiresAuth: true, role: 'workshop' },
   },
+  {
+    path: '/workshop/settings',
+    name: 'workshop-settings',
+    component: WorkshopProfile,
+    meta: { layout: 'workshop', requiresAuth: true, role: 'workshop' },
+  },
 
   {
-    path: '/',
-    redirect: '/login',
+    path: '/not-found',
+    name: 'not-found',
+    component: () => import('@/shared-kernel/presentation/ui/pages/not-found.page.vue'),
+    meta: { layout: 'none' },
   },
+
   {
     path: '/:pathMatch(.*)*',
-    name: 'not-found',
-    component: () => import('@/shared-kernel/presentation/ui/components/not-found.component.vue'),
+    redirect: '/not-found',
   },
 ]
 
 export const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 })
