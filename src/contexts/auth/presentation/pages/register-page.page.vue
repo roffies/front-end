@@ -215,19 +215,12 @@ const authService = new AuthApiService()
 
 // Helper function to generate random data
 const generateRandomUserData = () => {
-  const avatars = [
-    'https://i.pravatar.cc/150?img=1',
-    'https://i.pravatar.cc/150?img=2',
-    'https://i.pravatar.cc/150?img=3',
-    'https://i.pravatar.cc/150?img=5',
-    'https://i.pravatar.cc/150?img=8',
-    'https://i.pravatar.cc/150?img=12',
-    'https://i.pravatar.cc/150?img=15',
-    'https://i.pravatar.cc/150?img=20',
-  ]
-
-  const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)]
-  const randomRating = (Math.random() * 2 + 3).toFixed(1) // Rating between 3.0 and 5.0
+  // Generate random avatar ID between 1 and 100
+  const randomId = Math.floor(Math.random() * 100) + 1
+  const randomAvatar = `https://avatar.iran.liara.run/public/${randomId}`
+  
+  // Generate random rating between 3.0 and 5.0
+  const randomRating = (Math.random() * 2 + 3).toFixed(1)
 
   // Generate random date within the last 3 years
   const today = new Date()
