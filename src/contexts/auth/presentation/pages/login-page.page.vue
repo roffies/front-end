@@ -61,8 +61,8 @@ import AuthLayout from '@/shared-kernel/presentation/layouts/auth/auth-layout.co
 import { AuthApiService, AuthAssembler } from '@/contexts/auth/infrastructure/index.js'
 
 const router = useRouter()
-const email = ref('juan.perez@email.com')
-const password = ref('123456')
+const email = ref('admin1@admin.com')
+const password = ref('admin2')
 const rememberMe = ref(false)
 const loading = ref(false)
 const error = ref('')
