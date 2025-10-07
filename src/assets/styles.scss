@@ -1,3 +1,7 @@
+@use 'primeicons/primeicons.css';
+@use '@/assets/flags.css';
+@use '@/assets/layout/layout.scss';
+
 :root {
   --color-primary: #426766;
   --color-primary-dark: #3b6c5a;
@@ -58,9 +62,6 @@
   --focus-ring-shadow: 0 0 0 0.2rem rgba(66, 103, 102, 0.25);
 }
 
-@import 'primeicons/primeicons.css';
-@import '@/assets/layout/layout.scss';
-
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -83,4 +84,13 @@
 ::selection {
   background: rgba(66, 103, 102, 0.2);
   color: var(--color-text);
+}
+
+button:focus:not(:focus-visible),
+a:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+select:focus:not(:focus-visible) {
+  outline: none !important;
+  box-shadow: none !important;
 }
