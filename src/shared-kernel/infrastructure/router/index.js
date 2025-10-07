@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import LoginPage from '@/contexts/auth/presentation/pages/login-page.page.vue'
 import RegisterPage from '@/contexts/auth/presentation/pages/register-page.page.vue'
-import SelectRolePage from '@/contexts/auth/presentation/pages/select-role.page.vue'
 
 import DriverDashboard from '@/contexts/driver/presentation/pages/driver-dashboard.page.vue'
 import WorkshopsPage from '@/contexts/driver/presentation/pages/workshops-page.page.vue'
@@ -29,12 +28,6 @@ const routes = [
     path: '/register',
     name: 'register',
     component: RegisterPage,
-    meta: { layout: 'auth' },
-  },
-  {
-    path: '/select-role',
-    name: 'select-role',
-    component: SelectRolePage,
     meta: { layout: 'auth' },
   },
 
