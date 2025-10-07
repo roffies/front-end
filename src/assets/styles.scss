@@ -75,3 +75,66 @@ select:focus:not(:focus-visible) {
   outline: none !important;
   box-shadow: none !important;
 }
+
+.primary-btn {
+  background: linear-gradient(
+    135deg,
+    var(--color-primary) 0%,
+    var(--color-primary-dark) 100%
+  ) !important;
+  border: none !important;
+  padding: 0.875rem 2rem !important;
+  font-weight: 600 !important;
+  font-size: 1rem !important;
+  transition: all var(--transition-fast) !important;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.secondary-btn {
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary) !important;
+  transition: all var(--transition-fast) !important;
+
+  &:hover {
+    background: var(--color-secondary) !important;
+    border-color: var(--color-primary-dark) !important;
+    color: var(--color-primary-dark) !important;
+  }
+}
+
+.text-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 500;
+
+  &:hover {
+    text-decoration: underline;
+    opacity: 0.6;
+  }
+}
+
+.p-inputtext {
+  border-radius: 8px;
+  padding: 0.75rem;
+  font-size: 0.875rem;
+
+  &:focus {
+    border-color: var(--color-primary-light) !important;
+    box-shadow: 0 0 0 3px rgba(66, 103, 102, 0.1);
+  }
+}
+
+.p-step-title {
+  color: var(--color-primary-light) !important;
+}
+
+.p-step-number {
+  color: var(--color-primary-light) !important;
+}
+
+.w-full {
+  width: 100%;
+}
