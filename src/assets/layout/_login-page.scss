@@ -49,20 +49,8 @@
   text-decoration: underline;
 }
 
-.sign-in-btn {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-primary-dark) 100%
-  ) !important;
-  border: none !important;
-  height: 48px !important;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
 .sign-up-link {
-  color: var(--color-primary);
+  color: var(--primary-color);
   text-decoration: none;
   font-weight: 500;
 }

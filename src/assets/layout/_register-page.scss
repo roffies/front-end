@@ -62,7 +62,7 @@
 }
 
 .terms-link {
-  color: var(--color-primary);
+  color: var(--primary-color);
   text-decoration: none;
   font-weight: 500;
 
@@ -81,11 +81,6 @@
 }
 
 .continue-btn {
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
-  border: none;
-  height: 48px;
-  font-weight: 600;
-  font-size: 1rem;
   margin-left: auto;
 }
 
@@ -124,27 +119,6 @@
   gap: 1rem;
 }
 
-.role-card {
-  border: 2px solid var(--color-gray-200);
-  border-radius: 12px;
-  padding: 1.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background: white;
-
-  &:hover {
-    border-color: var(--color-primary);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(66, 103, 102, 0.15);
-  }
-
-  &.selected {
-    border-color: var(--color-primary);
-    background: linear-gradient(135deg, rgba(66, 103, 102, 0.05) 0%, rgba(59, 108, 90, 0.05) 100%);
-    box-shadow: 0 4px 12px rgba(66, 103, 102, 0.2);
-  }
-}
-
 .role-icon {
   text-align: center;
   margin-bottom: 1rem;
@@ -179,7 +153,7 @@
 }
 
 .sign-in-link {
-  color: var(--color-primary);
+  color: var(--primary-color);
   text-decoration: none;
   font-weight: 500;
 
@@ -285,10 +259,6 @@
 }
 
 @media (max-width: 480px) {
-  .role-card {
-    padding: 1rem;
-  }
-
   .step-title {
     font-size: 1.25rem;
   }
