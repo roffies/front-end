@@ -4,7 +4,7 @@ export class AuthAssembler {
       console.error(`Auth error: ${response.status}`)
       return null
     }
-    
+
     const userData = response.data
     return {
       id: userData.id,
@@ -25,9 +25,9 @@ export class AuthAssembler {
         message: 'Invalid credentials',
       }
     }
-    
+
     const { accessToken, user } = response.data
-    
+
     return {
       success: true,
       user: user,
@@ -43,9 +43,9 @@ export class AuthAssembler {
         message: 'Registration failed',
       }
     }
-    
+
     const { accessToken, user } = response.data
-    
+
     return {
       success: true,
       user: user,

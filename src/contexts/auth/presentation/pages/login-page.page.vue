@@ -87,11 +87,9 @@ const handleLogin = async () => {
     const loginResult = AuthAssembler.toLoginResponse(response)
 
     if (loginResult.success) {
-      // Save token and user to localStorage
       localStorage.setItem('accessToken', loginResult.accessToken)
       localStorage.setItem('user', JSON.stringify(loginResult.user))
 
-      // Redirect based on role
       if (loginResult.user.role === 'driver') {
         router.push('/driver/dashboard')
       } else if (loginResult.user.role === 'workshop') {
