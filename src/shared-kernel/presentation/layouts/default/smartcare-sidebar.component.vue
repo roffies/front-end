@@ -79,13 +79,24 @@
         <i class="pi pi-circle-fill"></i>
         <span>{{ $t('common.status') }}: {{ $t('common.open') }}</span>
       </div>
+
+      <div class="sign-out-section">
+        <pv-button
+          :label="$t('auth.logout')"
+          icon="pi pi-sign-out"
+          class="sign-out-btn"
+          :aria-label="$t('aria.signOut')"
+          @click="handleSignOut"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, onMounted, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { layoutService } from '@/shared-kernel/infrastructure/layout/layout.service.js'
 import { UserApiService } from '@/contexts/auth/infrastructure/user-api.service.js'
 import { UserAssembler } from '@/contexts/auth/domain/user.assembler.js'
 import { VehicleApiService } from '@/contexts/driver/infrastructure/vehicle-api.service.js'
@@ -95,302 +106,80 @@ import { AppointmentAssembler } from '@/contexts/workshop/domain/appointment.ass
 import SmartcareMenu from './smartcare-menu.component.vue'
 
 const route = useRoute()
+const router = useRouter()
 const workshopStatus = ref('open')
 
-const currentUser = ref(null)
-const userVehicles = ref([])
-const userAppointments = ref([])
-const loading = ref(false)
-const error = ref(null)
+const { state } = layoutService
+const currentUser = computed(() => state.currentUser)
+const userVehicles = computed(() => state.userVehicles)
+const userAppointments = computed(() => state.userAppointments)
+const loading = computed(() => state.sidebarLoading)
+const error = computed(() => state.sidebarError)
 
 const userService = new UserApiService()
 const vehicleService = new VehicleApiService()
 const appointmentService = new AppointmentApiService()
 
-const getUserRole = () => {
+const currentRole = computed(() => {
   if (route.path.startsWith('/driver')) {
     return 'driver'
   } else if (route.path.startsWith('/workshop')) {
     return 'workshop'
   }
   return 'driver'
-}
+})
 
 const loadData = async () => {
-  loading.value = true
-  error.value = null
+  if (state.sidebarDataLoaded && state.currentRole === currentRole.value) {
+    return
+  }
+
+  layoutService.setSidebarLoading(true)
+  layoutService.setSidebarError(null)
 
   try {
-    const role = getUserRole()
+    const role = currentRole.value
 
     const usersResponse = await userService.getAll()
     const users = UserAssembler.toEntitiesFromResponse(usersResponse)
-    currentUser.value = users.find((user) => user.role === role)
+    const user = users.find((u) => u.role === role)
 
-    if (!currentUser.value) {
+    if (!user) {
       throw new Error('User not found')
     }
+
+    layoutService.setCurrentUser(user)
 
     if (role === 'driver') {
       const vehiclesResponse = await vehicleService.getAll()
       const allVehicles = VehicleAssembler.toEntitiesFromResponse(vehiclesResponse)
-      userVehicles.value = allVehicles.filter((v) => v.userId === currentUser.value.id)
+      layoutService.setUserVehicles(allVehicles.filter((v) => v.userId === user.id))
+      layoutService.setUserAppointments([])
     } else if (role === 'workshop') {
       const appointmentsResponse = await appointmentService.getAll()
       const allAppointments = AppointmentAssembler.toEntitiesFromResponse(appointmentsResponse)
-      userAppointments.value = allAppointments.filter((a) => a.workshopId === currentUser.value.id)
+      layoutService.setUserAppointments(allAppointments.filter((a) => a.workshopId === user.id))
+      layoutService.setUserVehicles([])
     }
-  } catch (err) {
-    error.value = err.message || 'Error loading data'
-    console.error('Error loading data:', err)
 
-    currentUser.value = null
-    userVehicles.value = []
-    userAppointments.value = []
+    layoutService.setCurrentRole(role)
+    layoutService.setSidebarDataLoaded(true)
+  } catch (err) {
+    layoutService.setSidebarError(err.message || 'Error loading data')
+    console.error('Error loading data:', err)
+    layoutService.setCurrentUser(null)
+    layoutService.setUserVehicles([])
+    layoutService.setUserAppointments([])
   } finally {
-    loading.value = false
+    layoutService.setSidebarLoading(false)
   }
+}
+
+const handleSignOut = () => {
+  router.push('/login')
 }
 
 onMounted(async () => {
   await loadData()
 })
 </script>
-
-<style lang="scss" scoped>
-.layout-sidebar {
-  position: fixed;
-  width: 20rem;
-  height: calc(100vh - 8rem);
-  z-index: 999;
-  overflow-y: hidden;
-  user-select: none;
-  top: 6rem;
-  left: 2rem;
-  transition:
-    transform var(--layout-section-transition-duration),
-    left var(--layout-section-transition-duration);
-  background-color: var(--surface-overlay);
-  border-radius: var(--content-border-radius);
-  padding: 0.5rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar-user-section {
-  flex-shrink: 0;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--surface-border);
-}
-
-.sidebar-menu-wrapper {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  margin-bottom: 1rem;
-
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: var(--surface-border);
-    border-radius: 3px;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: var(--text-color-secondary);
-  }
-}
-
-.user-profile {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.user-details {
-  text-align: center;
-  margin-top: 0.75rem;
-}
-
-.user-name {
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-color);
-  margin: 0 0 0.25rem 0;
-}
-
-.user-phone {
-  font-size: 0.75rem;
-  color: var(--text-color-secondary);
-  margin: 0;
-}
-
-.user-stats {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  background: var(--surface-card);
-  border-radius: var(--content-border-radius);
-  border: 1px solid var(--surface-border);
-}
-
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
-  font-size: 0.6875rem;
-  color: var(--text-color-secondary);
-  text-align: center;
-}
-
-.stat-item i {
-  font-size: 1rem;
-}
-
-.error-message {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  background: var(--color-error-light);
-  color: var(--color-error);
-  border-radius: var(--content-border-radius);
-  border: 1px solid var(--color-error-light);
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-.error-message i {
-  font-size: 0.875rem;
-}
-
-.loading-message {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  background: var(--color-primary-light);
-  color: var(--color-primary);
-  border-radius: var(--content-border-radius);
-  border: 1px solid var(--color-primary-light);
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-.loading-message i {
-  font-size: 0.875rem;
-}
-
-.sidebar-footer {
-  flex-shrink: 0;
-  padding-top: 1rem;
-  border-top: 1px solid var(--surface-border);
-}
-
-.emergency-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  background: var(--color-error);
-  color: white;
-  border-radius: var(--content-border-radius);
-  cursor: pointer;
-  transition: background-color var(--element-transition-duration);
-  font-weight: 600;
-  font-size: 0.875rem;
-  border: none;
-}
-
-.emergency-button:hover {
-  background: var(--color-error);
-  opacity: 0.9;
-}
-
-.emergency-button i {
-  font-size: 1rem;
-}
-
-.status-indicator {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  border-radius: var(--content-border-radius);
-  font-size: 0.75rem;
-  font-weight: 500;
-  border: 1px solid var(--surface-border);
-}
-
-.status-indicator.open {
-  background: var(--color-success-light);
-  color: var(--color-success);
-  border-color: var(--color-success-light);
-}
-
-.status-indicator.closed {
-  background: var(--color-error-light);
-  color: var(--color-error);
-  border-color: var(--color-error-light);
-}
-
-.status-indicator i {
-  font-size: 0.5rem;
-}
-
-@media (max-width: 991px) {
-  .layout-sidebar {
-    transform: translateX(-100%);
-    left: 0;
-    top: 0;
-    height: 100vh;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-right: 1px solid var(--surface-border);
-    transition:
-      transform 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99),
-      left 0.4s cubic-bezier(0.05, 0.74, 0.2, 0.99);
-    box-shadow:
-      0px 3px 5px rgba(0, 0, 0, 0.02),
-      0px 0px 2px rgba(0, 0, 0, 0.05),
-      0px 1px 4px rgba(0, 0, 0, 0.08);
-  }
-
-  .user-profile {
-    flex-direction: row;
-    align-items: center;
-    text-align: left;
-    gap: 0.75rem;
-  }
-
-  .user-details {
-    text-align: left;
-    margin-top: 0;
-  }
-
-  .user-stats {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .stat-item {
-    justify-content: flex-start;
-    flex-direction: row;
-    gap: 0.5rem;
-  }
-}
-</style>

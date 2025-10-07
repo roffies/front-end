@@ -15,6 +15,15 @@ const layoutState = reactive({
   staticMenuMobileActive: false,
   menuHoverActive: false,
   activeMenuItem: null,
+  currentUser: null,
+  userVehicles: [],
+  userAppointments: [],
+  sidebarLoading: false,
+  sidebarError: null,
+  sidebarDataLoaded: false,
+  currentRole: null,
+  menuItems: [],
+  menuLoaded: false,
 })
 
 class LayoutService {
@@ -34,6 +43,42 @@ class LayoutService {
     } else {
       layoutState.staticMenuMobileActive = !layoutState.staticMenuMobileActive
     }
+  }
+
+  setCurrentUser(user) {
+    layoutState.currentUser = user
+  }
+
+  setUserVehicles(vehicles) {
+    layoutState.userVehicles = vehicles
+  }
+
+  setUserAppointments(appointments) {
+    layoutState.userAppointments = appointments
+  }
+
+  setSidebarLoading(loading) {
+    layoutState.sidebarLoading = loading
+  }
+
+  setSidebarError(error) {
+    layoutState.sidebarError = error
+  }
+
+  setSidebarDataLoaded(loaded) {
+    layoutState.sidebarDataLoaded = loaded
+  }
+
+  setCurrentRole(role) {
+    layoutState.currentRole = role
+  }
+
+  setMenuItems(items) {
+    layoutState.menuItems = items
+  }
+
+  setMenuLoaded(loaded) {
+    layoutState.menuLoaded = loaded
   }
 
   get isSidebarActive() {
