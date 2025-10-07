@@ -213,18 +213,14 @@ const error = ref('')
 
 const authService = new AuthApiService()
 
-// Helper function to generate random data
 const generateRandomUserData = () => {
-  // Generate random avatar ID between 1 and 100
   const randomId = Math.floor(Math.random() * 100) + 1
   const randomAvatar = `https://avatar.iran.liara.run/public/${randomId}`
-  
-  // Generate random rating between 3.0 and 5.0
+
   const randomRating = (Math.random() * 2 + 3).toFixed(1)
 
-  // Generate random year: 2024 or 2025
   const currentYear = new Date().getFullYear()
-  const possibleYears = [currentYear - 1, currentYear] // [2024, 2025]
+  const possibleYears = [currentYear - 1, currentYear]
   const randomYear = possibleYears[Math.floor(Math.random() * possibleYears.length)]
 
   return {
@@ -276,7 +272,6 @@ const handleRegister = async () => {
   error.value = ''
 
   try {
-    // Generate random data for avatar, rating, and memberSince
     const randomData = generateRandomUserData()
 
     const response = await authService.register({
@@ -293,11 +288,9 @@ const handleRegister = async () => {
     const registerResult = AuthAssembler.toRegisterResponse(response)
 
     if (registerResult.success) {
-      // Use TokenManager instead of direct localStorage access
       TokenManager.setToken(registerResult.accessToken)
       TokenManager.setUser(registerResult.user)
 
-      // Redirect based on role
       if (registerResult.user.role === 'driver') {
         router.push('/driver/dashboard')
       } else if (registerResult.user.role === 'workshop') {

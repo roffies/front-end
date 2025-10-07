@@ -183,21 +183,17 @@ const loadData = async () => {
 
 const handleSignOut = async () => {
   try {
-    // Call logout service to clear tokens
     await authService.logout()
 
-    // Clear layout service state
     layoutService.setCurrentUser(null)
     layoutService.setUserVehicles([])
     layoutService.setUserAppointments([])
     layoutService.setSidebarDataLoaded(false)
     layoutService.setCurrentRole(null)
 
-    // Redirect to login
     router.push('/login')
   } catch (error) {
     console.error('Error during logout:', error)
-    // Even if logout fails, clear local state and redirect
     layoutService.setCurrentUser(null)
     layoutService.setUserVehicles([])
     layoutService.setUserAppointments([])

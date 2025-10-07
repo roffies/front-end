@@ -131,11 +131,6 @@ export const MENU_CONFIG = {
   ],
 }
 
-/**
- * Get menu items for a specific role
- * @param {string} role - User role ('driver' or 'workshop')
- * @returns {Array} Menu items for the role
- */
 export function getMenuByRole(role) {
   return MENU_CONFIG[role] || MENU_CONFIG.driver
 }

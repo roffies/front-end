@@ -13,13 +13,11 @@ export class AuthApiService {
   }
 
   async getCurrentUser() {
-    // Token is automatically added by http interceptor
     const response = await http.get('/me')
     return response
   }
 
   async logout() {
-    // Clear all authentication data using TokenManager
     TokenManager.clearAuth()
     return { success: true }
   }

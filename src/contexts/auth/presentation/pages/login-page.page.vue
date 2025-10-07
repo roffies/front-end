@@ -88,7 +88,6 @@ const handleLogin = async () => {
     const loginResult = AuthAssembler.toLoginResponse(response)
 
     if (loginResult.success) {
-      // Use TokenManager instead of direct localStorage access
       TokenManager.setToken(loginResult.accessToken)
       TokenManager.setUser(loginResult.user)
 

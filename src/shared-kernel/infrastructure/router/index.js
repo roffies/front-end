@@ -162,9 +162,7 @@ export const router = createRouter({
   routes,
 })
 
-// Simple auth guard using TokenManager
 router.beforeEach((to, from, next) => {
-  // Check if route requires authentication
   if (to.meta.requiresAuth) {
     if (!TokenManager.isAuthenticated()) {
       console.log('🔒 No token or user found, redirecting to login')
@@ -172,11 +170,9 @@ router.beforeEach((to, from, next) => {
       return
     }
 
-    // Check if user has the correct role
     const userRole = TokenManager.getUserRole()
     if (to.meta.role && userRole !== to.meta.role) {
       console.log(`🚫 User role '${userRole}' doesn't match required role '${to.meta.role}'`)
-      // Redirect to appropriate dashboard based on user role
       if (userRole === 'driver') {
         next('/driver/dashboard')
       } else if (userRole === 'workshop') {
@@ -188,11 +184,10 @@ router.beforeEach((to, from, next) => {
     }
   }
 
-  // If user is already logged in and trying to access auth pages, redirect to dashboard
   if ((to.path === '/login' || to.path === '/register') && to.meta.layout === 'auth') {
     if (TokenManager.isAuthenticated()) {
       const userRole = TokenManager.getUserRole()
-      console.log('✅ User already logged in, redirecting to dashboard')
+      console.log('User already logged in, redirecting to dashboard')
       if (userRole === 'driver') {
         next('/driver/dashboard')
       } else if (userRole === 'workshop') {
