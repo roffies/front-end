@@ -12,6 +12,7 @@ import DriverProfile from '@/contexts/driver/presentation/pages/driver-profile.p
 import WorkshopDashboard from '@/contexts/workshop/presentation/pages/workshop-dashboard.page.vue'
 import QuotesPage from '@/contexts/workshop/presentation/pages/quotes-page.page.vue'
 import WorkshopProfile from '@/contexts/workshop/presentation/pages/workshop-profile.page.vue'
+import WorkshopAppointments from '@/contexts/workshop/presentation/pages/workshop-appointments.page.vue'
 
 const routes = [
   {
@@ -98,7 +99,7 @@ const routes = [
   {
     path: '/workshop/appointments',
     name: 'workshop-appointments',
-    component: WorkshopDashboard,
+    component: WorkshopAppointments,
     meta: { layout: 'workshop', requiresAuth: true, role: 'workshop' },
   },
   {
