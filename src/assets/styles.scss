@@ -41,25 +41,6 @@
 
   --transition-fast: 0.15s ease-in-out;
   --transition-normal: 0.3s ease-in-out;
-
-  --primary-color: var(--color-primary);
-  --primary-contrast-color: white;
-  --text-color: var(--color-text);
-  --text-color-secondary: var(--color-text-light);
-  --surface-border: var(--color-gray-200);
-  --surface-card: var(--color-background);
-  --surface-hover: var(--color-gray-100);
-  --surface-overlay: var(--color-background);
-  --transition-duration: var(--transition-fast);
-  --maskbg: rgba(0, 0, 0, 0.4);
-  --content-border-radius: var(--radius-md);
-  --layout-section-transition-duration: var(--transition-normal);
-  --element-transition-duration: var(--transition-fast);
-  --focus-ring-width: 2px;
-  --focus-ring-style: solid;
-  --focus-ring-color: var(--color-primary);
-  --focus-ring-offset: 2px;
-  --focus-ring-shadow: 0 0 0 0.2rem rgba(66, 103, 102, 0.25);
 }
 
 ::-webkit-scrollbar {
