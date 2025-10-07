@@ -186,21 +186,11 @@ import LanguageSwitcher from '@/shared-kernel/presentation/ui/components/languag
   }
 
   .illustration-panel {
-    min-height: 300px;
+    display: none !important;
   }
 
   .welcome-title {
     font-size: 1.5rem;
-  }
-
-  .smartphone {
-    width: 80px;
-    height: 140px;
-    right: 10%;
-  }
-
-  .character {
-    transform: scale(0.8);
   }
 }
 
@@ -218,7 +208,7 @@ import LanguageSwitcher from '@/shared-kernel/presentation/ui/components/languag
   }
 
   .illustration-panel {
-    min-height: 200px;
+    display: none !important;
   }
 }
 </style>
