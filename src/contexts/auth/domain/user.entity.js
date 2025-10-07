@@ -8,7 +8,6 @@ export class User {
     avatar = '',
     rating = 0,
     memberSince = '',
-    createdAt = '',
   }) {
     this.id = id
     this.name = name
@@ -18,6 +17,5 @@ export class User {
     this.avatar = avatar
     this.rating = rating
     this.memberSince = memberSince
-    this.createdAt = createdAt
   }
 }
