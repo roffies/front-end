@@ -222,17 +222,15 @@ const generateRandomUserData = () => {
   // Generate random rating between 3.0 and 5.0
   const randomRating = (Math.random() * 2 + 3).toFixed(1)
 
-  // Generate random date within the last 3 years
-  const today = new Date()
-  const threeYearsAgo = new Date(today.getFullYear() - 3, today.getMonth(), today.getDate())
-  const randomTime =
-    threeYearsAgo.getTime() + Math.random() * (today.getTime() - threeYearsAgo.getTime())
-  const randomDate = new Date(randomTime).toISOString()
+  // Generate random year: 2024 or 2025
+  const currentYear = new Date().getFullYear()
+  const possibleYears = [currentYear - 1, currentYear] // [2024, 2025]
+  const randomYear = possibleYears[Math.floor(Math.random() * possibleYears.length)]
 
   return {
     avatar: randomAvatar,
     rating: parseFloat(randomRating),
-    memberSince: randomDate,
+    memberSince: randomYear.toString(),
   }
 }
 
