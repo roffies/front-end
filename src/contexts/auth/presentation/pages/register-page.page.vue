@@ -218,5 +218,7 @@ const goToLogin = () => {
 
 const handleRegister = () => {
   // TODO: Implement register logic
+  // For now, redirect to driver dashboard after registration
+  router.push('/driver/dashboard')
 }
 </script>
