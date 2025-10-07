@@ -197,6 +197,7 @@ import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import AuthLayout from '@/shared-kernel/presentation/layouts/auth/auth-layout.component.vue'
 import { AuthApiService, AuthAssembler } from '@/contexts/auth/infrastructure/index.js'
+import { TokenManager } from '@/shared-kernel/infrastructure/auth/token-manager.js'
 
 const router = useRouter()
 const currentStep = ref(1)
@@ -211,6 +212,36 @@ const loading = ref(false)
 const error = ref('')
 
 const authService = new AuthApiService()
+
+// Helper function to generate random data
+const generateRandomUserData = () => {
+  const avatars = [
+    'https://i.pravatar.cc/150?img=1',
+    'https://i.pravatar.cc/150?img=2',
+    'https://i.pravatar.cc/150?img=3',
+    'https://i.pravatar.cc/150?img=5',
+    'https://i.pravatar.cc/150?img=8',
+    'https://i.pravatar.cc/150?img=12',
+    'https://i.pravatar.cc/150?img=15',
+    'https://i.pravatar.cc/150?img=20',
+  ]
+
+  const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)]
+  const randomRating = (Math.random() * 2 + 3).toFixed(1) // Rating between 3.0 and 5.0
+
+  // Generate random date within the last 3 years
+  const today = new Date()
+  const threeYearsAgo = new Date(today.getFullYear() - 3, today.getMonth(), today.getDate())
+  const randomTime =
+    threeYearsAgo.getTime() + Math.random() * (today.getTime() - threeYearsAgo.getTime())
+  const randomDate = new Date(randomTime).toISOString()
+
+  return {
+    avatar: randomAvatar,
+    rating: parseFloat(randomRating),
+    memberSince: randomDate,
+  }
+}
 
 const canProceedToStep2 = computed(() => {
   return (
@@ -254,20 +285,26 @@ const handleRegister = async () => {
   error.value = ''
 
   try {
+    // Generate random data for avatar, rating, and memberSince
+    const randomData = generateRandomUserData()
+
     const response = await authService.register({
       name: fullName.value,
       email: email.value,
       phone: phone.value,
       password: password.value,
       role: selectedRole.value,
+      avatar: randomData.avatar,
+      rating: randomData.rating,
+      memberSince: randomData.memberSince,
     })
 
     const registerResult = AuthAssembler.toRegisterResponse(response)
 
     if (registerResult.success) {
-      // Save token and user to localStorage
-      localStorage.setItem('accessToken', registerResult.accessToken)
-      localStorage.setItem('user', JSON.stringify(registerResult.user))
+      // Use TokenManager instead of direct localStorage access
+      TokenManager.setToken(registerResult.accessToken)
+      TokenManager.setUser(registerResult.user)
 
       // Redirect based on role
       if (registerResult.user.role === 'driver') {

@@ -11,18 +11,18 @@ export const http = axios.create({
 http.interceptors.request.use(
   (config) => {
     const token = TokenManager.getToken()
-    
+
     // Public endpoints that don't require authentication
     const publicEndpoints = ['/login', '/register']
     const isPublicEndpoint = publicEndpoints.some((endpoint) => config.url?.includes(endpoint))
-    
+
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     } else if (!isPublicEndpoint) {
       // Only warn if it's NOT a public endpoint
       console.log('⚠️ No token found for request:', config.url)
     }
-    
+
     return config
   },
   (error) => {
