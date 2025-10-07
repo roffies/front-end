@@ -1,31 +1,23 @@
 <template>
-  <div class="language-switcher">
-    <pv-dropdown
-      v-model="selectedLanguage"
-      :options="languageOptions"
-      option-label="label"
-      option-value="code"
-      :placeholder="$t('common.language')"
-      :aria-label="$t('aria.languageSelector')"
-      class="language-dropdown"
-      @update:modelValue="changeLanguage"
-    >
-      <template #value="slotProps">
-        <div v-if="slotProps.value" class="language-option">
-          <span :class="getLanguageFlag(slotProps.value)"></span>
-          <span>{{ getLanguageLabel(slotProps.value) }}</span>
-        </div>
-        <span v-else>{{ $t('common.language') }}</span>
-      </template>
+  <pv-split-button
+    :label="getLanguageLabel(selectedLanguage)"
+    :model="menuItems"
+    :aria-label="$t('aria.languageSelector')"
+    outlined
+    severity="secondary"
+  >
+    <template #default>
+      <span :class="getLanguageFlag(selectedLanguage)" class="language-flag"></span>
+      <span>{{ getLanguageLabel(selectedLanguage) }}</span>
+    </template>
 
-      <template #option="slotProps">
-        <div class="language-option">
-          <span :class="getLanguageFlag(slotProps.option.code)"></span>
-          <span>{{ slotProps.option.label }}</span>
-        </div>
-      </template>
-    </pv-dropdown>
-  </div>
+    <template #item="{ item }">
+      <div class="language-menu-item" @click="selectLanguage(item.code)">
+        <span :class="getLanguageFlag(item.code)" class="language-flag"></span>
+        <span>{{ item.label }}</span>
+      </div>
+    </template>
+  </pv-split-button>
 </template>
 
 <script setup>
@@ -41,9 +33,17 @@ const languageOptions = [
   { code: 'en', label: 'English', flag: '🇺🇸' },
 ]
 
-const changeLanguage = (value) => {
-  locale.value = value
-  localStorage.setItem('smartcare_language', value)
+const menuItems = languageOptions.map((option) => ({
+  label: option.label,
+  code: option.code,
+  flag: option.flag,
+  command: () => selectLanguage(option.code),
+}))
+
+const selectLanguage = (code) => {
+  selectedLanguage.value = code
+  locale.value = code
+  localStorage.setItem('smartcare_language', code)
 }
 
 const getLanguageFlag = (code) => {
@@ -61,66 +61,17 @@ const getLanguageLabel = (code) => {
 </script>
 
 <style scoped>
-.language-switcher {
-  display: flex;
-  align-items: center;
+.language-flag {
+  width: 20px !important;
+  height: 14px !important;
 }
 
-.language-dropdown {
-  min-width: 120px;
-}
-
-.language-option {
+.language-menu-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
-
-.language-option i {
-  font-size: 0.875rem;
-}
-
-.language-option .flag {
-  width: 20px !important;
-  height: 14px !important;
-  background-size: 100% !important;
-  flex-shrink: 0 !important;
-}
-
-.p-dropdown {
-  border: 1px solid var(--color-gray-300);
-  border-radius: 8px;
-  background: white;
-  min-height: 40px;
-}
-
-.p-dropdown:not(.p-disabled):hover {
-  border-color: var(--color-primary);
-}
-
-.p-dropdown:not(.p-disabled).p-focus {
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(66, 103, 102, 0.1);
-}
-
-.p-dropdown-panel {
-  border: 1px solid var(--color-gray-200);
-  border-radius: 8px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
-
-.p-dropdown-item {
+  cursor: pointer;
   padding: 0.75rem 1rem;
-  border-radius: 4px;
-  margin: 0.25rem;
-}
-
-.p-dropdown-item:hover {
-  background-color: var(--color-gray-100);
-}
-
-.p-dropdown-item.p-highlight {
-  background-color: var(--color-primary);
-  color: white;
+  transition: background-color 0.2s ease;
 }
 </style>

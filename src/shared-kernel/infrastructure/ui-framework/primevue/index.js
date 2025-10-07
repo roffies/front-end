@@ -4,6 +4,7 @@ import Lara from '@primeuix/themes/lara'
 import StyleClass from 'primevue/styleclass'
 
 import Button from 'primevue/button'
+import SplitButton from 'primevue/splitbutton'
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 import InputText from 'primevue/inputtext'
@@ -18,7 +19,6 @@ import Divider from 'primevue/divider'
 import Panel from 'primevue/panel'
 import TabView from 'primevue/tabview'
 import TabPanel from 'primevue/tabpanel'
-import Dropdown from 'primevue/dropdown'
 import Stepper from 'primevue/stepper'
 import StepList from 'primevue/steplist'
 import StepPanels from 'primevue/steppanels'
@@ -41,6 +41,7 @@ export function setupPrimeVue(app, selectedTheme = 'aura') {
   app.directive('styleclass', StyleClass)
 
   app.component('pv-button', Button)
+  app.component('pv-split-button', SplitButton)
   app.component('pv-data-table', DataTable)
   app.component('pv-column', Column)
   app.component('pv-input-text', InputText)
@@ -55,7 +56,6 @@ export function setupPrimeVue(app, selectedTheme = 'aura') {
   app.component('pv-panel', Panel)
   app.component('pv-tab-view', TabView)
   app.component('pv-tab-panel', TabPanel)
-  app.component('pv-dropdown', Dropdown)
   app.component('pv-stepper', Stepper)
   app.component('pv-step-list', StepList)
   app.component('pv-step-panels', StepPanels)
