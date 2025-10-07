@@ -11,7 +11,7 @@
                 class="logo-image"
               />
             </div>
-            <h1 class="app-title">SmartCare</h1>
+            <h1 class="app-title">{{ $t('common.appName') }}</h1>
             <div class="language-switcher-container">
               <LanguageSwitcher />
             </div>
@@ -48,7 +48,6 @@
 <script setup>
 import LanguageSwitcher from '@/shared-kernel/presentation/ui/components/language-switcher.component.vue'
 </script>
-
 <style scoped>
 .auth-layout {
   min-height: 100vh;

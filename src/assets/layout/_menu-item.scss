@@ -1,0 +1,67 @@
+@use 'mixins' as *;
+
+.layout-root-menuitem {
+  margin-bottom: 1.5rem;
+}
+
+.layout-menuitem-root-text {
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-text);
+  margin: 0.75rem 0;
+  letter-spacing: 0.5px;
+}
+
+.layout-menuitem-icon {
+  margin-right: 0.75rem;
+  color: var(--color-primary);
+  font-size: 1rem;
+}
+
+.layout-menuitem-text {
+  flex: 1;
+}
+
+.layout-submenu-toggler {
+  font-size: 0.75rem;
+  margin-left: auto;
+  transition: transform var(--transition-fast);
+  color: var(--color-text-light);
+}
+
+.active-menuitem > a .layout-submenu-toggler {
+  transform: rotate(-180deg);
+}
+
+.layout-submenu {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  margin-top: 0.5rem;
+
+  li a {
+    margin-left: 1rem;
+  }
+}
+
+.layout-submenu-enter-from,
+.layout-submenu-leave-to {
+  max-height: 0;
+}
+
+.layout-submenu-enter-to,
+.layout-submenu-leave-from {
+  max-height: 1000px;
+}
+
+.layout-submenu-leave-active {
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
+}
+
+.layout-submenu-enter-active {
+  overflow: hidden;
+  transition: max-height 1s ease-in-out;
+}
