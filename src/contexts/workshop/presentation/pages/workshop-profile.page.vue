@@ -11,19 +11,3 @@
 <script setup>
 import DefaultLayout from '@/shared-kernel/presentation/layouts/default/default-layout.component.vue'
 </script>
-
-<style scoped>
-.workshop-profile {
-  padding: 2rem;
-  text-align: center;
-}
-
-.workshop-profile h1 {
-  color: #1f2937;
-  margin-bottom: 1rem;
-}
-
-.workshop-profile p {
-  color: #6b7280;
-}
-</style>
