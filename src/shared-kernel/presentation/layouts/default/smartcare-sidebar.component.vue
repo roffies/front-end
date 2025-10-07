@@ -185,14 +185,14 @@ const handleSignOut = async () => {
   try {
     // Call logout service to clear tokens
     await authService.logout()
-    
+
     // Clear layout service state
     layoutService.setCurrentUser(null)
     layoutService.setUserVehicles([])
     layoutService.setUserAppointments([])
     layoutService.setSidebarDataLoaded(false)
     layoutService.setCurrentRole(null)
-    
+
     // Redirect to login
     router.push('/login')
   } catch (error) {
