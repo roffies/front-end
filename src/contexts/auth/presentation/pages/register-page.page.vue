@@ -41,6 +41,17 @@
                   </div>
 
                   <div class="input-group">
+                    <label for="phone">{{ $t('auth.phone') }}</label>
+                    <pv-input-text
+                      id="phone"
+                      v-model="phone"
+                      type="tel"
+                      :placeholder="$t('auth.enterPhone')"
+                      class="w-full"
+                    />
+                  </div>
+
+                  <div class="input-group">
                     <label for="password">{{ $t('auth.password') }}</label>
                     <pv-password
                       id="password"
@@ -191,6 +202,7 @@ const router = useRouter()
 const currentStep = ref(1)
 const fullName = ref('Admin User')
 const email = ref('admin1@admin.com')
+const phone = ref('+1234567890')
 const password = ref('admin2')
 const confirmPassword = ref('admin2')
 const agreeTerms = ref(false)
@@ -204,6 +216,7 @@ const canProceedToStep2 = computed(() => {
   return (
     fullName.value.trim() &&
     email.value.trim() &&
+    phone.value.trim() &&
     password.value &&
     confirmPassword.value &&
     password.value === confirmPassword.value &&
@@ -227,7 +240,7 @@ const goToLogin = () => {
 }
 
 const handleRegister = async () => {
-  if (!fullName.value || !email.value || !password.value || !selectedRole.value) {
+  if (!fullName.value || !email.value || !phone.value || !password.value || !selectedRole.value) {
     error.value = 'Please fill in all fields'
     return
   }
@@ -244,6 +257,7 @@ const handleRegister = async () => {
     const response = await authService.register({
       name: fullName.value,
       email: email.value,
+      phone: phone.value,
       password: password.value,
       role: selectedRole.value,
     })
