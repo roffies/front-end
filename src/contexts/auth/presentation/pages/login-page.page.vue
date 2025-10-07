@@ -31,7 +31,17 @@
           <a href="#" class="forgot-password">{{ $t('auth.forgotPassword') }}</a>
         </div>
 
-        <pv-button :label="$t('auth.signIn')" class="w-full primary-btn" @click="handleLogin" />
+        <div v-if="error" class="error-message">
+          {{ error }}
+        </div>
+
+        <pv-button
+          :label="$t('auth.signIn')"
+          class="w-full primary-btn"
+          :loading="loading"
+          :disabled="loading"
+          @click="handleLogin"
+        />
       </div>
     </template>
 
@@ -48,15 +58,54 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import AuthLayout from '@/shared-kernel/presentation/layouts/auth/auth-layout.component.vue'
+import { AuthApiService, AuthAssembler } from '@/contexts/auth/infrastructure/index.js'
 
 const router = useRouter()
-const email = ref('stanley@gmail.com')
-const password = ref('')
+const email = ref('juan.perez@email.com')
+const password = ref('123456')
 const rememberMe = ref(false)
+const loading = ref(false)
+const error = ref('')
 
-const handleLogin = () => {
-  // TODO: Implement login logic
-  router.push('/driver/dashboard')
+const authService = new AuthApiService()
+
+const handleLogin = async () => {
+  if (!email.value || !password.value) {
+    error.value = 'Please fill in all fields'
+    return
+  }
+
+  loading.value = true
+  error.value = ''
+
+  try {
+    const response = await authService.login({
+      email: email.value,
+      password: password.value,
+    })
+
+    const loginResult = AuthAssembler.toLoginResponse(response)
+
+    if (loginResult.success) {
+      // Save token and user to localStorage
+      localStorage.setItem('accessToken', loginResult.accessToken)
+      localStorage.setItem('user', JSON.stringify(loginResult.user))
+
+      // Redirect based on role
+      if (loginResult.user.role === 'driver') {
+        router.push('/driver/dashboard')
+      } else if (loginResult.user.role === 'workshop') {
+        router.push('/workshop/dashboard')
+      }
+    } else {
+      error.value = loginResult.message
+    }
+  } catch (err) {
+    console.error('Login error:', err)
+    error.value = 'Login failed. Please try again.'
+  } finally {
+    loading.value = false
+  }
 }
 
 const goToRegister = () => {

@@ -38,3 +38,13 @@
     text-decoration: underline;
   }
 }
+
+.error-message {
+  color: var(--color-error);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-sm);
+}
