@@ -1,5 +1,6 @@
 export default {
   common: {
+    appName: 'SmartCare',
     loading: 'Cargando...',
     error: 'Error',
     success: 'Éxito',
@@ -78,6 +79,23 @@ export default {
     routePath: 'Ruta',
     vehicle: 'Vehículo',
     driverInfo: 'Información del conductor',
+    notFoundPage: 'Página no encontrada',
+    goToDashboard: 'Ir al panel de control',
+    goBack: 'Volver a la página anterior',
+    signOut: 'Cerrar sesión',
+    footer: 'Pie de página',
+  },
+
+  footer: {
+    poweredBy: '© 2025 Roffies. Todos los derechos reservados.',
+  },
+
+  errors: {
+    errorCode: '404',
+    pageNotFoundTitle: 'Página No Encontrada',
+    pageNotFoundMessage: 'La página que estás buscando no existe o ha sido movida.',
+    goToDashboard: 'Ir al Panel',
+    goBack: 'Volver',
   },
   driver: {
     rating: 'Calificación',

@@ -7,10 +7,15 @@ const messages = {
   es,
 }
 
+const getInitialLocale = () => {
+  const savedLanguage = localStorage.getItem('smartcare_language')
+  return savedLanguage || 'es'
+}
+
 export const i18n = createI18n({
-  legacy: false, // Use Composition API mode
-  locale: 'es',
+  legacy: false,
+  locale: getInitialLocale(),
   fallbackLocale: 'en',
-  globalInjection: true, // Enable global $t
+  globalInjection: true,
   messages,
 })
