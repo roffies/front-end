@@ -80,39 +80,6 @@
   flex-wrap: wrap;
 }
 
-.primary-btn {
-  background: linear-gradient(
-    135deg,
-    var(--color-primary) 0%,
-    var(--color-primary-dark) 100%
-  ) !important;
-  border: none !important;
-  padding: 0.875rem 2rem !important;
-  font-weight: 600 !important;
-  font-size: 1rem !important;
-  transition: all var(--transition-fast) !important;
-
-  &:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 8px 20px rgba(66, 103, 102, 0.3) !important;
-  }
-}
-
-.secondary-btn {
-  border-color: var(--color-primary) !important;
-  color: var(--color-primary) !important;
-  padding: 0.875rem 2rem !important;
-  font-weight: 600 !important;
-  font-size: 1rem !important;
-  transition: all var(--transition-fast) !important;
-
-  &:hover {
-    background: var(--color-primary-light) !important;
-    border-color: var(--color-primary-dark) !important;
-    color: var(--color-primary-dark) !important;
-  }
-}
-
 @keyframes pulse {
   0%,
   100% {

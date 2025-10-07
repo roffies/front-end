@@ -139,31 +139,6 @@
   border-top: 1px solid var(--surface-border);
 }
 
-.emergency-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem;
-  background: var(--color-error);
-  color: white;
-  border-radius: var(--content-border-radius);
-  cursor: pointer;
-  transition: background-color var(--element-transition-duration);
-  font-weight: 600;
-  font-size: 0.875rem;
-  border: none;
-
-  &:hover {
-    background: var(--color-error);
-    opacity: 0.9;
-  }
-
-  i {
-    font-size: 1rem;
-  }
-}
-
 .status-indicator {
   display: flex;
   align-items: center;
@@ -236,30 +211,4 @@
 
 .sign-out-section {
   margin-top: 0.5rem;
-}
-
-.sign-out-btn {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  gap: 0.5rem !important;
-  padding: 0.75rem !important;
-  background: var(--color-gray-600) !important;
-  color: white !important;
-  border-radius: var(--content-border-radius) !important;
-  cursor: pointer !important;
-  transition: background-color var(--element-transition-duration) !important;
-  font-weight: 600;
-  font-size: 0.875rem !important;
-  border: none !important;
-  width: 100% !important;
-
-  &:hover {
-    background: var(--color-gray-700) !important;
-    opacity: 0.9 !important;
-  }
-
-  i {
-    font-size: 1rem !important;
-  }
 }

@@ -64,7 +64,7 @@
     <div class="sidebar-footer">
       <div
         v-if="currentUser?.role === 'driver'"
-        class="emergency-button"
+        class="w-full p-button p-component p-button-danger"
         :aria-label="$t('aria.emergency')"
       >
         <i class="pi pi-phone"></i>
@@ -84,7 +84,7 @@
         <pv-button
           :label="$t('auth.logout')"
           icon="pi pi-sign-out"
-          class="sign-out-btn"
+          class="p-button p-component p-button-outlined secondary-btn w-full"
           :aria-label="$t('aria.signOut')"
           @click="handleSignOut"
         />
