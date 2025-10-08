@@ -207,6 +207,19 @@ export default {
     conductor: 'Conductor',
     noData: 'No se encontró información del usuario.',
   },
+    workshopProfile: {
+    title: 'Perfil del Taller',
+    welcome: '¡Bienvenido, {name}!',
+    registerDate: 'Registro',
+    email: 'Correo electrónico',
+    address: 'Dirección',
+    servicesOffered: 'Servicios ofrecidos',
+    rating: 'Calificación',
+    role: 'Taller',
+    edit: 'Editar',
+    changePassword: 'Cambiar contraseña',
+    noData: 'No se encontró información del taller.'
+  },
   nav: {
     home: 'Inicio',
     about: 'Acerca de',
