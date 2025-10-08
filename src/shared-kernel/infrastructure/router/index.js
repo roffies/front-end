@@ -9,6 +9,7 @@ import WorkshopsPage from '@/contexts/driver/presentation/pages/workshops-page.p
 import WorkshopDetail from '@/contexts/driver/presentation/pages/workshop-detail.page.vue'
 import HistoryPage from '@/contexts/driver/presentation/pages/history-page.page.vue'
 import DriverProfile from '@/contexts/driver/presentation/pages/driver-profile.page.vue'
+import DriverServices from '@/contexts/driver/presentation/pages/driver-services.page.vue'
 
 import WorkshopDashboard from '@/contexts/workshop/presentation/pages/workshop-dashboard.page.vue'
 import QuotesPage from '@/contexts/workshop/presentation/pages/quotes-page.page.vue'
@@ -71,7 +72,7 @@ const routes = [
   {
     path: '/driver/services',
     name: 'driver-services',
-    component: DriverDashboard,
+    component: DriverServices,
     meta: { layout: 'driver', requiresAuth: true, role: 'driver' },
   },
   {
