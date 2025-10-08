@@ -32,11 +32,13 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
 import DefaultLayout from '@/shared-kernel/presentation/layouts/default/default-layout.component.vue'
 import { WorkshopApiService } from '@/contexts/driver/infrastructure/workshop-api.service.js'
 import WorkshopCard from '@/contexts/driver/presentation/workshop-card.vue'
 
 const { t } = useI18n()
+const router = useRouter()
 
 const workshops = ref([])
 const loading = ref(false)
@@ -58,8 +60,7 @@ async function load() {
 }
 
 function goToDetail(id) {
-  // TODO: navega al detalle cuando exista la ruta
-  console.log('Ver detalle taller', id)
+  router.push({ name: 'workshop-detail', params: { id } })
 }
 
 function goToReserve(id) {
