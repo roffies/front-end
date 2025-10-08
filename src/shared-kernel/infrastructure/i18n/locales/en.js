@@ -227,7 +227,22 @@ export default {
     messages: 'Messages',
     profile: 'Profile',
   },
-
+  driverProfile: {
+    title: 'Profile',
+    welcome: 'Welcome, {name}!',
+    registerDate: 'Registration date',
+    name: 'Name',
+    email: 'Email',
+    phone: 'Phone',
+    servicesHistory: 'Service history',
+    vehiclesRegistered: 'Registered vehicles',
+    lastAccess: 'Last access',
+    role: 'Role',
+    edit: 'Edit',
+    changePassword: 'Change password',
+    conductor: 'Driver',
+    noData: 'No user information found.'
+  },
   menu: {
     driver: {
       home: 'Home',
