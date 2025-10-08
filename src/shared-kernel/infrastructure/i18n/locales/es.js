@@ -64,7 +64,7 @@ export default {
     dashboard: 'Inicio',
     myVehicles: 'Mis Vehículos',
     findWorkshop: 'Buscar Taller',
-    myServices: 'Mis Servicios',
+    myServices: 'Mis Citas',
     emergency: 'Emergencia',
     appointments: 'Citas',
     services: 'Servicios',
@@ -205,7 +205,7 @@ export default {
     edit: 'Editar',
     changePassword: 'Cambiar contraseña',
     conductor: 'Conductor',
-    noData: 'No se encontró información del usuario.'
+    noData: 'No se encontró información del usuario.',
   },
   nav: {
     home: 'Inicio',
@@ -233,7 +233,7 @@ export default {
       addVehicle: 'Agregar Vehículo',
       services: 'Servicios',
       findWorkshop: 'Buscar Taller',
-      myServices: 'Mis Servicios',
+      myServices: 'Mis Citas',
       history: 'Historial',
       configuration: 'Configuración',
       profile: 'Perfil',

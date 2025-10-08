@@ -64,7 +64,7 @@ export default {
     dashboard: 'Dashboard',
     myVehicles: 'My Vehicles',
     findWorkshop: 'Find Workshop',
-    myServices: 'My Services',
+    myServices: 'My Appointments',
     emergency: 'Emergency',
     appointments: 'Appointments',
     services: 'Services',
@@ -221,7 +221,7 @@ export default {
     edit: 'Edit',
     changePassword: 'Change password',
     conductor: 'Driver',
-    noData: 'No user information found.'
+    noData: 'No user information found.',
   },
   menu: {
     driver: {
@@ -232,7 +232,7 @@ export default {
       addVehicle: 'Add Vehicle',
       services: 'Services',
       findWorkshop: 'Find Workshop',
-      myServices: 'My Services',
+      myServices: 'My Appointments',
       history: 'History',
       configuration: 'Configuration',
       profile: 'Profile',
