@@ -191,7 +191,22 @@ export default {
     customerReviews: 'Reseñas de clientes',
     businessAnalytics: 'Análisis de negocio',
   },
-
+  driverProfile: {
+    title: 'Perfil',
+    welcome: '¡Bienvenido, {name}!',
+    registerDate: 'Registro',
+    name: 'Nombre',
+    email: 'Correo',
+    phone: 'Teléfono',
+    servicesHistory: 'Historial de servicios',
+    vehiclesRegistered: 'Vehículos registrados',
+    lastAccess: 'Último acceso',
+    role: 'Rol',
+    edit: 'Editar',
+    changePassword: 'Cambiar contraseña',
+    conductor: 'Conductor',
+    noData: 'No se encontró información del usuario.'
+  },
   nav: {
     home: 'Inicio',
     about: 'Acerca de',
