@@ -6,6 +6,7 @@ import RegisterPage from '@/contexts/auth/presentation/pages/register-page.page.
 
 import DriverDashboard from '@/contexts/driver/presentation/pages/driver-dashboard.page.vue'
 import WorkshopsPage from '@/contexts/driver/presentation/pages/workshops-page.page.vue'
+import WorkshopDetail from '@/contexts/driver/presentation/pages/workshop-detail.page.vue'
 import HistoryPage from '@/contexts/driver/presentation/pages/history-page.page.vue'
 import DriverProfile from '@/contexts/driver/presentation/pages/driver-profile.page.vue'
 
@@ -58,6 +59,12 @@ const routes = [
     path: '/driver/workshops',
     name: 'driver-workshops',
     component: WorkshopsPage,
+    meta: { layout: 'driver', requiresAuth: true, role: 'driver' },
+  },
+  {
+    path: '/driver/workshops/:id',
+    name: 'workshop-detail',
+    component: WorkshopDetail,
     meta: { layout: 'driver', requiresAuth: true, role: 'driver' },
   },
   {
