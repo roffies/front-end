@@ -4,6 +4,7 @@
     <smartcare-sidebar></smartcare-sidebar>
     <div class="layout-main-container">
       <div class="layout-main">
+        <slot />
         <router-view></router-view>
       </div>
       <smartcare-footer></smartcare-footer>
