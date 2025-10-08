@@ -223,6 +223,19 @@ export default {
     conductor: 'Driver',
     noData: 'No user information found.',
   },
+    workshopProfile: {
+    title: 'Workshop Profile',
+    welcome: 'Welcome, {name}!',
+    registerDate: 'Registration date',
+    email: 'Email',
+    address: 'Address',
+    servicesOffered: 'Services offered',
+    rating: 'Rating',
+    role: 'Workshop',
+    edit: 'Edit',
+    changePassword: 'Change password',
+    noData: 'No workshop information found.'
+  },
   menu: {
     driver: {
       home: 'Home',
