@@ -4,15 +4,12 @@
       <h1 class="text-2xl font-semibold">{{ t('driver.workshops') }}</h1>
       <p class="text-gray-600">{{ t('auth.workshopFinder') }}</p>
 
-      <!-- Estado de carga -->
       <div v-if="loading" class="text-gray-500">{{ t('common.loading') }}</div>
 
-      <!-- Error -->
       <div v-else-if="error" class="text-red-600">
         {{ t('common.error') }}: {{ t('common.errorLoadingData') }}
       </div>
 
-      <!-- Lista -->
       <div v-else class="space-y-5">
         <WorkshopCard
           v-for="w in workshops"

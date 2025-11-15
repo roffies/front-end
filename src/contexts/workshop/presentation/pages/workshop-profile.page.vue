@@ -9,7 +9,6 @@
         </div>
 
         <div v-else class="profile-card">
-          <!-- Left: avatar + summary -->
           <div class="left-section">
             <img
               class="avatar"
@@ -21,7 +20,6 @@
             <p class="user-phone">{{ user.phone }}</p>
           </div>
 
-          <!-- Right: readonly fields -->
           <div class="right-section">
             <h2 class="welcome-text">
               {{ $t('workshopProfile.welcome', { name: firstName }) }}
