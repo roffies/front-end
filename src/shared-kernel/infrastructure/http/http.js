@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { TokenManager } from '../auth/token-manager.js'
 
-export const BASE_URL = 'https://smartcare-api-production.up.railway.app'
+export const BASE_URL = 'https://smartcare-api-gamma.vercel.app'
 
 export const http = axios.create({
   baseURL: BASE_URL,
